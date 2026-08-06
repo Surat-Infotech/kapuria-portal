@@ -103,6 +103,86 @@ export const ChevronDownIcon = (props) => (
   </svg>
 );
 
+export const CheckIcon = (props) => (
+  <svg
+    viewBox="0 0 20 20"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={2.4}
+    aria-hidden
+    {...props}
+  >
+    <path d="M16.6667 5L7.5 14.1667L3.33333 10" />
+  </svg>
+);
+
+export const VerifiedIcon = (props) => (
+  <svg
+    viewBox="0 0 11 11"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={2.4}
+    aria-hidden
+    {...props}
+  >
+    <path d="M9.16667 2.75L4.125 7.79167L1.83333 5.5" />
+  </svg>
+);
+
+export const EditIcon = (props) => (
+  <svg
+    viewBox="0 0 15 15"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={1.8}
+    aria-hidden
+    {...props}
+  >
+    <path d="M2.5 12.4997H5L11.5625 5.93715C11.8111 5.68851 11.9508 5.35128 11.9508 4.99965C11.9508 4.64802 11.8111 4.31079 11.5625 4.06215C11.3139 3.81351 10.9766 3.67383 10.625 3.67383C10.2734 3.67383 9.93614 3.81351 9.6875 4.06215L3.125 10.6247V12.4997H2.5Z" />
+    <path d="M8.4375 4.0625L10.3125 5.9375" />
+  </svg>
+);
+
+export const DismissIcon = (props) => (
+  <svg
+    viewBox="0 0 15 15"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={2}
+    aria-hidden
+    {...props}
+  >
+    <path d="M3.75 3.75L11.25 11.25M11.25 3.75L3.75 11.25" />
+  </svg>
+);
+
+export const CameraIcon = (props) => (
+  <svg
+    viewBox="0 0 16 16"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={1.5}
+    aria-hidden
+    {...props}
+  >
+    <path d="M2.66667 4.66732H4.66667L5.66667 3.33398H10.3333L11.3333 4.66732H13.3333C13.5101 4.66732 13.6797 4.73756 13.8047 4.86258C13.9298 4.9876 14 5.15717 14 5.33398V12.0007C14 12.1775 13.9298 12.347 13.8047 12.4721C13.6797 12.5971 13.5101 12.6673 13.3333 12.6673H2.66667C2.48986 12.6673 2.32029 12.5971 2.19526 12.4721C2.07024 12.347 2 12.1775 2 12.0007V5.33398C2 5.15717 2.07024 4.9876 2.19526 4.86258C2.32029 4.73756 2.48986 4.66732 2.66667 4.66732Z" />
+    <path d="M8.00006 10.5997C9.25191 10.5997 10.2667 9.58492 10.2667 8.33307C10.2667 7.08123 9.25191 6.06641 8.00006 6.06641C6.74822 6.06641 5.7334 7.08123 5.7334 8.33307C5.7334 9.58492 6.74822 10.5997 8.00006 10.5997Z" />
+  </svg>
+);
+
+export const SaveCheckIcon = (props) => (
+  <svg
+    viewBox="0 0 16 16"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={1.8}
+    aria-hidden
+    {...props}
+  >
+    <path d="M3.33333 8L6.66667 11.3333L12.6667 4" />
+  </svg>
+);
+
 export const CloseIcon = (props) => (
   <svg
     viewBox="0 0 18 18"
