@@ -1,26 +1,172 @@
 @import "tailwindcss";
 
+/* ==========================================================================
+   Kapuria Portal — Typography System
+   Derived from Figma: KD_Charlie-new (Buyer Portal, node 2135-23026)
+   Display / headings: Playfair Display (italic, editorial)
+   UI / body:          Montserrat
+   ========================================================================== */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f6f1e9;
+  --foreground: #0b2233;
+
+  /* Text colors */
+  --text-primary: #0b2233;
+  --text-secondary: #6a7680;
+  --text-muted: #9aa0a6;
+  --text-accent: #9a6b21;
+  --text-gold: #ebc37f;
+  --text-inverse: #ffffff;
+  --text-on-dark-muted: rgba(255, 255, 255, 0.5);
+
+  /* Surface / border / brand — used by interactive components */
+  --navy-800: #082235;
+  --navy-900: #052033;
+  --gold-300: #ebc37f;
+  --gold-400: #dfb367;
+  --surface: #ffffff;
+  --surface-sunken: #f6f1e9;
+  --border-default: #d9d2c6;
+  --border-subtle: #e4dfd4;
+  --border-inverse: #33414d;
+  --info: #0066df;
+  --info-soft: #d9e4ff;
+  --destructive: #f0142f;
+  --destructive-soft: #fcd5d9;
+
+  /* Sidebar navigation (Buyer Portal / Menu) */
+  --sidebar-from: #0a273f;
+  --sidebar-to: #001b2f;
+  --sidebar-border: #1d354b;
+  --sidebar-item: #b9c4ce;
+  --sidebar-item-active-bg: rgba(231, 190, 123, 0.13);
+  --sidebar-group-label: rgba(255, 255, 255, 0.34);
+  --gradient-sidebar: linear-gradient(
+    180deg,
+    var(--sidebar-from) 0%,
+    var(--sidebar-to) 100%
+  );
+  --gradient-avatar: radial-gradient(
+    circle at 25% 25%,
+    #f3d6aa 0%,
+    #e5bf8b 50%,
+    #d7a86b 100%
+  );
+
+  /* Font families */
+  --font-sans: var(--font-montserrat);
+  --font-playfair: var(--font-playfair-display);
+  --font-serif: var(--font-playfair-display);
 }
 
 @theme inline {
+  --spacing: 1px;
+
+  --breakpoint-xs: 425px;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1172px;
+
+  --container-xs: 425px;
+  --container-sm: 576px;
+  --container-md: 768px;
+  --container-lg: 992px;
+  --container-xl: 1172px;
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-text-accent: var(--text-accent);
+  --color-text-gold: var(--text-gold);
+  --color-text-inverse: var(--text-inverse);
+  --color-text-on-dark-muted: var(--text-on-dark-muted);
+
+  --color-navy-800: var(--navy-800);
+  --color-navy-900: var(--navy-900);
+  --color-gold-300: var(--gold-300);
+  --color-gold-400: var(--gold-400);
+  --color-surface: var(--surface);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-border-default: var(--border-default);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-inverse: var(--border-inverse);
+  --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
+  --color-destructive: var(--destructive);
+  --color-destructive-soft: var(--destructive-soft);
+
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-item: var(--sidebar-item);
+  --color-sidebar-item-active-bg: var(--sidebar-item-active-bg);
+  --color-sidebar-group-label: var(--sidebar-group-label);
+
+  --font-sans: var(--font-sans);
+  --font-playfair: var(--font-playfair);
+  --font-serif: var(--font-serif);
+
+  /* Typography scale
+     Token names mirror kapuria-developers so the two codebases share one
+     vocabulary. Values come from the Portal Figma (app UI runs smaller than
+     the marketing site: display 36px here vs 64px there). */
+
+  /* Playfair italic — editorial headings */
+  --text-display: 36px;
+  --text-display--line-height: 44px;
+  --text-display--font-weight: 500;
+
+  --text-display-sm: 32px;
+  --text-display-sm--line-height: 40px;
+  --text-display--font-weight: 500;
+
+  /* Montserrat — section headings */
+  --text-h3: 22px;
+  --text-h3--line-height: 30px;
+
+  --text-h4: 18px;
+  --text-h4--line-height: 26px;
+
+  --text-h5: 16px;
+  --text-h5--line-height: 24px;
+
+  /* Montserrat — body */
+  --text-body-lg: 16px;
+  --text-body-lg--line-height: 26px;
+
+  --text-body: 14px;
+  --text-body--line-height: 22px;
+
+  --text-body-relaxed: 14px;
+  --text-body-relaxed--line-height: 24px;
+
+  --text-body-sm: 13px;
+  --text-body-sm--line-height: 20px;
+
+  --text-body-xs: 12px;
+  --text-body-xs--line-height: 18px;
+
+  /* Montserrat — interactive / meta */
+  --text-btn: 14px;
+  --text-btn--line-height: 22px;
+
+  --text-eyebrow: 12px;
+  --text-eyebrow--line-height: 18px;
+  --text-eyebrow--letter-spacing: 3px;
+
+  --text-overline: 8px;
+  --text-overline--line-height: 10px;
+  --text-overline--letter-spacing: 2.4px;
+
+  --text-link: 12px;
+  --text-link--line-height: 18px;
 }
 
 body {
   background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
 }
