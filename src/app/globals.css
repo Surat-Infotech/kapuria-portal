@@ -34,6 +34,12 @@
   --info-soft: #d9e4ff;
   --destructive: #f0142f;
   --destructive-soft: #fcd5d9;
+  --success: #2f6b52;
+  --success-muted: #4e8c72;
+  --success-soft: #e4efea;
+  --success-soft-strong: #cfe6da;
+  --success-soft-hover: #d8ebe1;
+  --avatar-ring: #f4e1c5;
 
   /* Sidebar navigation (Buyer Portal / Menu) */
   --sidebar-from: #0a273f;
@@ -99,6 +105,12 @@
   --color-info-soft: var(--info-soft);
   --color-destructive: var(--destructive);
   --color-destructive-soft: var(--destructive-soft);
+  --color-success: var(--success);
+  --color-success-muted: var(--success-muted);
+  --color-success-soft: var(--success-soft);
+  --color-success-soft-strong: var(--success-soft-strong);
+  --color-success-soft-hover: var(--success-soft-hover);
+  --color-avatar-ring: var(--avatar-ring);
 
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-item: var(--sidebar-item);
