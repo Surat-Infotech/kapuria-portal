@@ -9,7 +9,7 @@ import { LogoutIcon } from "@/components/icons";
 import { navGroups } from "@/config/navigation";
 import { cn } from "@/lib/utils";
 
-import seal from "@/assets/images/seal.png";
+import seal from "@/assets/images/seal.webp";
 
 const NavItem = ({ item, onNavigate }) => {
   const pathname = usePathname();
@@ -62,30 +62,34 @@ const SidebarNav = ({ user, onNavigate, className }) => (
     className={cn("flex h-full flex-col", className)}
     style={{ backgroundImage: "var(--gradient-sidebar)" }}
   >
-    <div className="border-b border-sidebar-border px-26 pt-26 pb-20">
+    <div className="shrink-0 border-b border-sidebar-border px-26 pt-26 pb-20">
       <Link href="/" onClick={onNavigate} className="inline-block">
         <SidebarLogo />
       </Link>
     </div>
 
-    <nav aria-label="Sidebar" className="flex flex-col gap-8 p-16">
-      {navGroups.map((group) => (
-        <div key={group.label} className="flex flex-col gap-8">
-          <p className="py-8 pr-12 text-overline uppercase text-sidebar-group-label">
-            {group.label}
-          </p>
-          {group.items.map((item) => (
-            <NavItem key={item.href} item={item} onNavigate={onNavigate} />
-          ))}
-        </div>
-      ))}
-    </nav>
+    {/* The nav groups and the seal scroll together; the logo above and the
+        user card below stay put. */}
+    <div className="scrollbar-sidebar flex min-h-0 flex-1 flex-col overflow-y-auto">
+      <nav aria-label="Sidebar" className="flex flex-col gap-8 p-16">
+        {navGroups.map((group) => (
+          <div key={group.label} className="flex flex-col gap-8">
+            <p className="py-8 pr-12 text-overline uppercase text-sidebar-group-label">
+              {group.label}
+            </p>
+            {group.items.map((item) => (
+              <NavItem key={item.href} item={item} onNavigate={onNavigate} />
+            ))}
+          </div>
+        ))}
+      </nav>
 
-    <div className="flex flex-1 flex-col items-center justify-end pb-32">
-      <Image src={seal} alt="" className="size-108" />
+      <div className="flex flex-1 flex-col items-center justify-end pt-16 pb-32">
+        <Image src={seal} alt="Kapuria Developer Badge" className="size-108 shrink-0" />
+      </div>
     </div>
 
-    <div className="flex flex-col gap-4 border-t border-sidebar-border p-16">
+    <div className="flex shrink-0 flex-col gap-4 border-t border-sidebar-border p-16">
       <UserCard user={user} />
       <button
         type="button"

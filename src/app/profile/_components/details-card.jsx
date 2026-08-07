@@ -26,17 +26,17 @@ const Field = ({ field }) => (
  * side on desktop and stacks on mobile.
  */
 const DetailsCard = ({ sections }) => (
-  <div className="flex w-full min-w-0 flex-1 flex-col gap-16 rounded-[20px] border border-border-subtle bg-surface px-16 py-26 lg:gap-26 lg:p-32">
+  <div className="flex w-full min-w-0 flex-1 flex-col gap-16 rounded-[20px] border border-border-subtle bg-surface px-16 py-26 gap-20 xl:gap-26 xl:p-32">
     {sections.map((section, index) => (
       <div key={section.title} className="contents">
         {index > 0 ? <div className="h-px w-full bg-border-subtle" /> : null}
 
-        <section className="flex flex-col gap-16 lg:gap-24">
+        <section className="flex flex-col gap-16 lg:gap-20 xl:gap-24">
           <h2 className="text-[10px]/[14px] font-bold tracking-[2px] text-text-accent">
             {section.title}
           </h2>
 
-          <dl className="flex flex-col gap-16 lg:gap-24">
+          <dl className="flex flex-col gap-16 lg:gap-20 xl:gap-24">
             {section.rows.map((row, rowIndex) => (
               <div
                 key={rowIndex}
