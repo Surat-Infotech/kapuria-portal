@@ -21,7 +21,7 @@ const SignInForm = () => {
       onSubmit={(event) => event.preventDefault()}
       className="flex flex-col gap-16"
     >
-      <Field>
+      <Field className={'gap-4 sm:gap-8'}>
         <Label htmlFor="email">Email address</Label>
         <Input
           id="email"
@@ -33,7 +33,7 @@ const SignInForm = () => {
         />
       </Field>
 
-      <Field>
+      <Field className={'gap-4 sm:gap-8'}>
         <Label htmlFor="password">Password</Label>
         {/* The reveal button sits inside the field, so the input is unstyled
             here and the wrapper carries the border. */}
@@ -65,7 +65,7 @@ const SignInForm = () => {
       <div className="flex items-center justify-between gap-16">
         <label
           htmlFor="remember"
-          className="flex cursor-pointer items-center gap-9 text-[12px]/[18px] text-text-secondary"
+          className="flex cursor-pointer items-center gap-9 text-body-xs text-text-secondary"
         >
           <Checkbox id="remember" name="remember" className={'rounded-[5px] size-18'} />
           Keep me signed in
@@ -75,7 +75,7 @@ const SignInForm = () => {
             needs the page added. */}
         <Link
           href="/forgot-password"
-          className="text-[12px]/[18px] font-semibold text-text-accent underline-offset-4 hover:underline"
+          className="text-link font-semibold text-text-accent underline-offset-4 hover:underline"
         >
           Forgot password?
         </Link>
