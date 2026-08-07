@@ -268,6 +268,65 @@ export const EyeOffIcon = (props) => (
   </svg>
 );
 
+// Property card chips: Blueprints / 3D Drawings / Photos / Legal Documents.
+export const BlueprintIcon = (props) => (
+  <svg
+    viewBox="0 0 16 16"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={1.3}
+    aria-hidden
+    {...props}
+  >
+    <path d="M2.75 2.25H13.25C13.5261 2.25 13.75 2.47386 13.75 2.75V13.25C13.75 13.5261 13.5261 13.75 13.25 13.75H2.75C2.47386 13.75 2.25 13.5261 2.25 13.25V2.75C2.25 2.47386 2.47386 2.25 2.75 2.25Z" />
+    <path d="M2.25 6.25H13.75M6.5 6.25V13.75M2.25 10H6.5" />
+  </svg>
+);
+
+export const DrawingsIcon = (props) => (
+  <svg
+    viewBox="0 0 16 16"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={1.3}
+    aria-hidden
+    {...props}
+  >
+    <path d="M2.5 6.6L8 2.4L13.5 6.6V13.1C13.5 13.4314 13.2314 13.7 12.9 13.7H3.1C2.76863 13.7 2.5 13.4314 2.5 13.1V6.6Z" />
+    <path d="M6.25 13.7V8.9H9.75V13.7" />
+  </svg>
+);
+
+export const PhotosIcon = (props) => (
+  <svg
+    viewBox="0 0 16 16"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={1.3}
+    aria-hidden
+    {...props}
+  >
+    <path d="M3 3.25H13C13.2761 3.25 13.5 3.47386 13.5 3.75V12.25C13.5 12.5261 13.2761 12.75 13 12.75H3C2.72386 12.75 2.5 12.5261 2.5 12.25V3.75C2.5 3.47386 2.72386 3.25 3 3.25Z" />
+    <path d="M5.75 7C6.16421 7 6.5 6.66421 6.5 6.25C6.5 5.83579 6.16421 5.5 5.75 5.5C5.33579 5.5 5 5.83579 5 6.25C5 6.66421 5.33579 7 5.75 7Z" />
+    <path d="M2.5 10.75L5.75 8L8.25 9.75L10.5 8.25L13.5 10.75" />
+  </svg>
+);
+
+export const DocumentIcon = (props) => (
+  <svg
+    viewBox="0 0 16 16"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={1.3}
+    aria-hidden
+    {...props}
+  >
+    <path d="M9.4 2.25H4.25C3.97386 2.25 3.75 2.47386 3.75 2.75V13.25C3.75 13.5261 3.97386 13.75 4.25 13.75H11.75C12.0261 13.75 12.25 13.5261 12.25 13.25V5.1L9.4 2.25Z" />
+    <path d="M9.25 2.4V5.25H12.1" />
+    <path d="M5.9 8.5H10.1M5.9 10.75H10.1" />
+  </svg>
+);
+
 export const CloseIcon = (props) => (
   <svg
     viewBox="0 0 18 18"
