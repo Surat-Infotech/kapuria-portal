@@ -10,14 +10,14 @@ import { Field, Input, Label } from "@/components/ui/input";
 const DetailsForm = ({ profile, onCancel }) => (
   <form
     onSubmit={(event) => event.preventDefault()}
-    className="flex w-full min-w-0 flex-1 flex-col gap-16 rounded-[20px] border border-border-subtle bg-surface px-16 py-26 lg:gap-26 lg:p-32"
+    className="flex w-full min-w-0 flex-1 flex-col gap-16 rounded-[20px] border border-border-subtle bg-surface px-16 py-26 lg:gap-20 xl:gap-26 xl:p-32"
   >
-    <section className="flex flex-col gap-16 lg:gap-24">
+    <section className="flex flex-col gap-16 lg:gap-20 xl:gap-24">
       <h2 className="text-[10px]/[14px] font-bold tracking-[2px] text-text-accent">
         PERSONAL
       </h2>
 
-      <div className="flex flex-col gap-16 lg:flex-row">
+      <div className="flex flex-col gap-16 md:flex-row">
         <Field>
           <Label htmlFor="firstName">First name</Label>
           <Input id="firstName" defaultValue={profile.firstName} />
@@ -28,7 +28,7 @@ const DetailsForm = ({ profile, onCancel }) => (
         </Field>
       </div>
 
-      <div className="flex flex-col gap-16 lg:flex-row">
+      <div className="flex flex-col gap-16 md:flex-row">
         <Field>
           <Label htmlFor="dob">Date of birth</Label>
           <Input id="dob" defaultValue={profile.dateOfBirth} />
@@ -42,7 +42,7 @@ const DetailsForm = ({ profile, onCancel }) => (
 
     <div className="h-px w-full bg-border-subtle" />
 
-    <section className="flex flex-col gap-16 lg:gap-24">
+    <section className="flex flex-col gap-16 lg:gap-20 xl:gap-24">
       <h2 className="text-[10px]/[14px] font-bold tracking-[2px] text-text-accent">
         CONTACT
       </h2>
@@ -51,7 +51,7 @@ const DetailsForm = ({ profile, onCancel }) => (
         <Label htmlFor="email">Email address</Label>
         {/* The Verified pill sits inside the field, so the input is unstyled
             here and the wrapper carries the border. */}
-        <div className="flex h-42 w-full items-center gap-8 rounded-[11px] border border-border-default bg-surface px-16 py-8 focus-within:border-gold-400">
+        <div className="flex w-full items-center gap-8 rounded-[11px] border border-border-default bg-surface px-16 py-8 focus-within:border-gold-400">
           <input
             id="email"
             type="email"
@@ -68,7 +68,7 @@ const DetailsForm = ({ profile, onCancel }) => (
       <Field>
         <Label htmlFor="phone">Phone number</Label>
         <div className="flex gap-10">
-          <div className="flex h-42 w-104 shrink-0 items-center justify-center rounded-[11px] border border-border-default bg-surface px-16 py-8 text-[13px] font-semibold text-text-primary">
+          <div className="flex w-104 shrink-0 items-center justify-center rounded-[11px] border border-border-default bg-surface px-16 py-10 text-[13px] font-semibold text-text-primary">
             🇮🇳 {profile.dialCode}
           </div>
           <Input id="phone" type="tel" defaultValue={profile.phone} />
@@ -78,7 +78,7 @@ const DetailsForm = ({ profile, onCancel }) => (
 
     <div className="h-px w-full bg-border-subtle" />
 
-    <section className="flex flex-col gap-16 lg:gap-24">
+    <section className="flex flex-col gap-16 lg:gap-20 xl:gap-24">
       <h2 className="text-[10px]/[14px] font-bold tracking-[2px] text-text-accent">
         ADDRESS
       </h2>
@@ -93,7 +93,7 @@ const DetailsForm = ({ profile, onCancel }) => (
         <Input id="address2" defaultValue={profile.addressLine2} />
       </Field>
 
-      <div className="flex flex-col gap-16 lg:flex-row">
+      <div className="flex flex-col gap-16 md:flex-row">
         <Field>
           <Label htmlFor="city">City / District</Label>
           <Input id="city" defaultValue={profile.city} />
@@ -107,7 +107,7 @@ const DetailsForm = ({ profile, onCancel }) => (
 
     <div className="h-px w-full bg-border-subtle" />
 
-    <div className="flex flex-col-reverse gap-16 lg:flex-row lg:items-center lg:justify-between">
+    <div className="flex flex-col-reverse gap-16 xl:flex-row xl:items-center lg:justify-between">
       <p className="text-center text-body-xs text-text-secondary lg:text-left">
         Changes are saved to your buyer account.
       </p>

@@ -80,7 +80,7 @@ const MobileNav = ({ user }) => {
           role="dialog"
           aria-modal="true"
           aria-label="Menu"
-          className={`absolute inset-y-0 left-0 w-264 max-w-[85vw] overflow-y-auto shadow-2xl transition-transform duration-300 ease-out ${
+          className={`absolute inset-y-0 left-0 w-264 max-w-[85vw] shadow-2xl transition-transform duration-300 ease-out ${
             open ? "translate-x-0" : "-translate-x-full"
           }`}
         >

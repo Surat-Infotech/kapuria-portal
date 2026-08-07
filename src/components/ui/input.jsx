@@ -6,7 +6,7 @@ const Input = ({ className, type = "text", ...props }) => (
     type={type}
     data-slot="input"
     className={cn(
-      "h-42 w-full min-w-0 rounded-[11px] border border-border-default bg-surface px-16 py-8 text-body text-text-primary outline-none transition-colors placeholder:text-text-muted focus:border-gold-400 disabled:cursor-not-allowed disabled:opacity-55",
+      "w-full min-w-0 rounded-[11px] border border-border-default bg-surface px-16 py-9 text-body text-text-primary outline-none transition-colors placeholder:text-text-muted focus:border-gold-400 disabled:cursor-not-allowed disabled:opacity-55",
       className
     )}
     {...props}
