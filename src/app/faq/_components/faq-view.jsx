@@ -146,7 +146,7 @@ const FaqView = ({ categories }) => {
                   {category.items.length}{" "}
                   {category.items.length === 1 ? "question" : "questions"}
                 </span>
-                <div className="h-px flex-1 bg-border-default" />
+                <div className="h-px flex-1 bg-[##E4DFD4]" />
               </div>
 
               <div className="flex flex-col gap-10">
