@@ -18,20 +18,42 @@ const NavItem = ({ item, onNavigate }) => {
   const isActive =
     pathname === item.href || pathname?.startsWith(`${item.href}/`);
 
+  const rowClass = cn(
+    "flex h-40 items-center gap-12 rounded-[10px] px-12 py-10 text-body font-medium transition-colors",
+    isActive
+      ? "bg-sidebar-item-active-bg text-white"
+      : "text-sidebar-item hover:bg-white/6 hover:text-white"
+  );
+
+  const content = (
+    <>
+      <Icon className="size-24 shrink-0" />
+      <span className="whitespace-nowrap">{item.label}</span>
+    </>
+  );
+
+  // Rows flagged `disabled` in the nav config render identically but do not
+  // navigate — the route still works if the URL is typed directly.
+  if (item.disabled) {
+    return (
+      <span
+        aria-disabled="true"
+        aria-current={isActive ? "page" : undefined}
+        className={cn(rowClass, "cursor-default")}
+      >
+        {content}
+      </span>
+    );
+  }
+
   return (
     <Link
       href={item.href}
       onClick={onNavigate}
       aria-current={isActive ? "page" : undefined}
-      className={cn(
-        "flex h-40 items-center gap-12 rounded-[10px] px-12 py-10 text-body font-medium transition-colors",
-        isActive
-          ? "bg-sidebar-item-active-bg text-white"
-          : "text-sidebar-item hover:bg-white/6 hover:text-white"
-      )}
+      className={rowClass}
     >
-      <Icon className="size-24 shrink-0" />
-      <span className="whitespace-nowrap">{item.label}</span>
+      {content}
     </Link>
   );
 };
