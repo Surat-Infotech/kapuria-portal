@@ -10,9 +10,9 @@ const providers = [
 const SocialSignIn = () => (
   <div className="flex flex-col gap-16 mt-16">
     <div className="flex items-center gap-16 pt-6">
-      <div className="h-px flex-1 bg-border-default" />
-      <span className="text-body font-semibold text-[#9AA0A6]">or continue with</span>
-      <div className="h-px flex-1 bg-border-default" />
+      <div className="h-px flex-1 bg-border-subtle" />
+      <span className="text-body font-semibold text-text-muted">or continue with</span>
+      <div className="h-px flex-1 bg-border-subtle" />
     </div>
 
     <div className="flex items-center justify-center gap-12 lg:gap-8">
