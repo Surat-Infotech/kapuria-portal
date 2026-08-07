@@ -17,6 +17,17 @@ const playfairDisplay = Playfair_Display({
 export const metadata = {
   title: "Kapuria Portal",
   description: "Kapuria buyer portal — drawings, photos and documents.",
+  // Every icon lives in `public/favicons/`, so the app-router file
+  // conventions (app/icon.png, app/apple-icon.png) do not apply and the
+  // tags are declared here instead.
+  icons: {
+    icon: [
+      { url: "/favicons/favicon.ico", sizes: "48x48", type: "image/x-icon" },
+      { url: "/favicons/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicons/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+    ],
+    apple: [{ url: "/favicons/apple-touch-icon.png", sizes: "180x180" }],
+  },
 };
 
 export default function RootLayout({ children }) {

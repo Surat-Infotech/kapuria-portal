@@ -3,9 +3,11 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 import logoMark from "@/assets/images/logo-mark.svg";
-import sidebarLogo from "@/assets/images/sidebar-logo.svg";
+import sidebarLogo from "@/assets/images/header-logo.webp";
 
-// Full wordmark used in the desktop sidebar header (115x40 in Figma).
+// Full wordmark used in the desktop sidebar header (116x40, matching the
+// 115x40 slot in Figma). Shared with kapuria-developers, where the same
+// artwork ships as webp — a fraction of the SVG's weight.
 const SidebarLogo = ({ className, ...props }) => (
   <Image
     src={sidebarLogo}
