@@ -40,6 +40,7 @@
   --success-soft-strong: #cfe6da;
   --success-soft-hover: #d8ebe1;
   --avatar-ring: #f4e1c5;
+  --gold-soft: #f6ecd8;
 
   /* Sidebar navigation (Buyer Portal / Menu) */
   --sidebar-from: #0a273f;
@@ -54,9 +55,8 @@
     var(--sidebar-to) 100%
   );
   --gradient-avatar: radial-gradient(
-    circle at 25% 25%,
+    79.88% 79.88% at 26.27% 23.73%,
     #f3d6aa 0%,
-    #e5bf8b 50%,
     #d7a86b 100%
   );
 
@@ -69,13 +69,13 @@
 @theme inline {
   --spacing: 1px;
 
-  --breakpoint-xs: 425px;
+  --breakpoint-xs: 426px;
   --breakpoint-sm: 576px;
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1172px;
 
-  --container-xs: 425px;
+  --container-xs: 426px;
   --container-sm: 576px;
   --container-md: 768px;
   --container-lg: 992px;
@@ -111,6 +111,7 @@
   --color-success-soft-strong: var(--success-soft-strong);
   --color-success-soft-hover: var(--success-soft-hover);
   --color-avatar-ring: var(--avatar-ring);
+  --color-gold-soft: var(--gold-soft);
 
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-item: var(--sidebar-item);
@@ -181,4 +182,29 @@ body {
   background: var(--background);
   color: var(--text-primary);
   font-family: var(--font-sans);
+}
+
+/* Slim gold scrollbar for the sidebar — the default chrome one is too heavy
+   against the navy panel. Firefox gets the two-value `scrollbar-color`; the
+   WebKit pseudo-elements cover Chrome, Edge and Safari. */
+.scrollbar-sidebar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(231, 190, 123, 0.28) transparent;
+}
+
+.scrollbar-sidebar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrollbar-sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-sidebar::-webkit-scrollbar-thumb {
+  background-color: rgba(231, 190, 123, 0.28);
+  border-radius: 999px;
+}
+
+.scrollbar-sidebar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(231, 190, 123, 0.5);
 }

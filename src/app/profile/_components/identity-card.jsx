@@ -7,8 +7,8 @@ import { Button } from "@/components/ui/button";
  * button appears under the name.
  */
 const IdentityCard = ({ profile, editing = false }) => (
-  <div className="flex w-full shrink-0 flex-col items-center gap-16 rounded-[20px] border border-border-subtle bg-surface p-16 lg:w-320 lg:p-26">
-    <div className="flex items-center rounded-[84px] border-2 border-avatar-ring p-6">
+  <div className="flex w-full shrink-0 flex-col items-center gap-16 rounded-[20px] border border-border-subtle bg-surface p-16 md:w-300 lg:w-320 lg:p-26">
+    <div className="flex items-center rounded-[84px] border-2 border-avatar-ring p-4">
       <div
         className="flex size-118 items-center justify-center rounded-full font-playfair text-[42px] font-medium italic text-[#5a3d12]"
         style={{ backgroundImage: "var(--gradient-avatar)" }}
