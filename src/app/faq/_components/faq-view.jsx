@@ -120,7 +120,7 @@ const FaqView = ({ categories }) => {
           variant="secondary"
           onClick={toggleAll}
           disabled={visibleIds.length === 0}
-          className="hidden rounded-[10px] w-127 justify-center px-18 py-12 gap-8 text-text-secondary lg:flex"
+          className="hidden rounded-[10px] w-127 justify-center h-42 px-18 py-11 gap-8 text-text-secondary lg:flex"
         >
           {allExpanded ? "Collapse All" : "Expand All"}
           {/* Arrow points the way the click will move things: up on
