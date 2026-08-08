@@ -21,7 +21,8 @@ const documentLinks = [
 
 const statusTones = {
   progress: "bg-[#F3EBD9] text-[#B98634]",
-  complete: "bg-[linear-gradient(0deg,_#E4EFEA_0%,_#E4EFEA_100%)] bg-[#F3EBD9] text-[#4E8C72]",
+  complete:
+    "bg-[linear-gradient(0deg,var(--success-soft)_0%,var(--success-soft)_100%)] bg-[#F3EBD9] text-success-muted",
 };
 
 const StatusPill = ({ status, className }) => (
