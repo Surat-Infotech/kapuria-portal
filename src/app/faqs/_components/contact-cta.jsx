@@ -20,10 +20,10 @@ const ChatBubbleIcon = (props) => (
 const ContactCta = () => (
   <div className="flex flex-col gap-18 rounded-[18px] bg-navy-800 px-28 py-24 lg:flex-row lg:items-center lg:justify-between">
     <div className="flex flex-col gap-2 lg:gap-4">
-      <h2 className="text-[17px]/[21px] font-semibold text-text-inverse lg:text-[18px]/[26px]">
+      <h2 className="text-[17px]/[21px] font-semibold text-text-inverse lg:text-h4">
         Still have a question?
       </h2>
-      <p className="text-[13px]/[19px] lg:text-[12px]/[18px] text-white/70">
+      <p className="text-[13px]/[19px] lg:text-body-xs text-white/70">
         Reach your project team directly — most replies land within a business
         day.
       </p>

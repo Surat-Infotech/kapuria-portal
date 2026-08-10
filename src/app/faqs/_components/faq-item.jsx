@@ -22,10 +22,10 @@ const FaqItem = ({ item, open, onToggle }) => (
       >
         {/* 16 + the 10 gap puts the question at 46 from the card edge, which
             is where the answer below it starts. */}
-        <span className="w-auto text-[12px]/[18px] font-bold text-text-accent">
+        <span className="w-auto text-body-xs font-bold text-text-accent">
           {item.number}
         </span>
-        <span className="flex-1 font-semibold text-text-primary text-[14px]/[22px]">
+        <span className="flex-1 font-semibold text-text-primary text-body">
           {item.question}
         </span>
         <ChevronDownIcon
@@ -46,7 +46,7 @@ const FaqItem = ({ item, open, onToggle }) => (
       )}
     >
       <div className="overflow-hidden">
-        <p className="pe-16 lg:pe-22 pb-16 lg:pb-20 ps-46 text-[12px]/[18px] text-text-secondary">
+        <p className="pe-16 lg:pe-22 pb-16 lg:pb-20 ps-46 text-body-xs text-text-secondary">
           {item.answer}
         </p>
       </div>

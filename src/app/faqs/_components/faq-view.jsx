@@ -120,7 +120,7 @@ const FaqView = ({ categories }) => {
           variant="secondary"
           onClick={toggleAll}
           disabled={visibleIds.length === 0}
-          className="hidden rounded-[10px] w-127 justify-center px-18 py-12 gap-8 text-[#6A7680] lg:flex"
+          className="hidden rounded-[10px] w-127 justify-center h-42 px-18 py-11 gap-8 text-text-secondary lg:flex"
         >
           {allExpanded ? "Collapse All" : "Expand All"}
           {/* Arrow points the way the click will move things: up on
@@ -139,14 +139,14 @@ const FaqView = ({ categories }) => {
           {results.map((category) => (
             <section key={category.title} className="flex flex-col gap-16">
               <div className="flex items-center gap-8">
-                <h2 className="font-playfair text-[18px]/[26px] italic text-text-accent font-medium">
+                <h2 className="font-playfair text-h4 italic text-text-accent font-medium">
                   {category.title}
                 </h2>
-                <span className="shrink-0 text-[12px]/[18px] text-text-secondary">
+                <span className="shrink-0 text-body-xs text-text-secondary">
                   {category.items.length}{" "}
                   {category.items.length === 1 ? "question" : "questions"}
                 </span>
-                <div className="h-px flex-1 bg-[##E4DFD4]" />
+                <div className="h-px flex-1 bg-border-subtle" />
               </div>
 
               <div className="flex flex-col gap-10">
