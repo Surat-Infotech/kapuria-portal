@@ -100,7 +100,7 @@ function DialCodeSelect({ value, onChange }) {
         <ul
           role="listbox"
           aria-label="Country dialling code"
-          className="absolute top-[calc(100%+4px)] left-0 z-20 max-h-224 w-full overflow-y-auto rounded-[11px] border border-[#D9D2C6] bg-white p-4 shadow-[0_12px_32px_0_rgba(8,34,53,0.12)]"
+          className="absolute top-[calc(100%+4px)] left-0 z-20 max-h-224 w-full overflow-y-auto rounded-[11px] border border-border-default bg-surface p-4 shadow-[0_12px_32px_0_rgba(8,34,53,0.12)]"
         >
           {PHONE_COUNTRY_CODES.map(({ code, label, Flag }) => (
             <li key={code} role="presentation">
@@ -114,7 +114,7 @@ function DialCodeSelect({ value, onChange }) {
                   setOpen(false);
                 }}
                 className={cn(
-                  "text-body-xs md:text-[14px]/[22px] flex w-full font-semibold cursor-pointer items-center justify-center gap-6 rounded-lg px-4 py-8 text-[#0B2233] transition-colors duration-200 hover:bg-[#FAF6F2]",
+                  "text-body-xs md:text-body flex w-full font-semibold cursor-pointer items-center justify-center gap-6 rounded-lg px-4 py-8 text-text-primary transition-colors duration-200 hover:bg-[#FAF6F2]",
                   code === value && "bg-[#FAF6F2]"
                 )}
               >
@@ -142,7 +142,7 @@ export default function ContactFormSection() {
   };
 
   return (
-    <div className="grid overflow-hidden rounded-[20px] border border-[#E4DFD4] shadow-[0_20px_60px_0_rgba(8,34,53,0.08)] xl:grid-cols-[1fr_384px] lg:rounded-3xl">
+    <div className="grid overflow-hidden rounded-[20px] border border-border-subtle shadow-[0_20px_60px_0_rgba(8,34,53,0.08)] xl:grid-cols-[1fr_384px] lg:rounded-3xl">
       {/* ── Enquiry form ─────────────────────────────────────── */}
       <div className="bg-surface p-16 pb-32 md:p-24 lg:p-32">
         <form onSubmit={handleSubmit} className="flex flex-col gap-16">
@@ -217,7 +217,7 @@ export default function ContactFormSection() {
                   ))}
                 </select>
 
-                <ChevronDownIcon className="pointer-events-none absolute top-1/2 right-16 size-16 -translate-y-1/2 [&_path]:stroke-[#6A7680]" />
+                <ChevronDownIcon className="pointer-events-none absolute top-1/2 right-16 size-16 -translate-y-1/2 [&_path]:stroke-text-secondary" />
               </div>
             </div>
 
@@ -236,7 +236,7 @@ export default function ContactFormSection() {
           </div>
 
           <div className="flex flex-col gap-12 sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-body-xs text-[#6A7680]">
+            <p className="text-body-xs text-text-secondary">
               We&rsquo;ll reply to your registered email.
             </p>
 
@@ -253,11 +253,14 @@ export default function ContactFormSection() {
       </div>
 
       {/* ── Project desk ─────────────────────────────────────── */}
-      <div className="bg-[#0E2C47] bg-[linear-gradient(180deg,#0A273F_0%,#001B2F_100%)] px-16 pt-32 pb-16 lg:p-32">
+      <div
+        className="bg-[#0E2C47] px-16 pt-32 pb-16 lg:p-32"
+        style={{ backgroundImage: "var(--gradient-sidebar)" }}
+      >
         <div className="xl:max-w-303">
           <SidebarLogo className="h-40 w-auto" />
 
-          <p className="text-[12px]/[18px] mt-8 text-[rgba(255,255,255,0.72)]">
+          <p className="text-body-xs mt-8 text-[rgba(255,255,255,0.72)]">
             {CONTACT_INTRO}
           </p>
 
@@ -274,12 +277,12 @@ export default function ContactFormSection() {
                   {href ? (
                     <a
                       href={href}
-                      className="hover:text-gold-300 text-body-xs sm:text-[14px]/[22px] mt-4 block font-semibold break-words text-white transition-colors duration-200"
+                      className="hover:text-gold-300 text-body-xs sm:text-body mt-4 block font-semibold break-words text-text-inverse transition-colors duration-200"
                     >
                       {value}
                     </a>
                   ) : (
-                    <p className="text-body-xs sm:text-[14px]/[22px] mt-4 text-[rgba(255,255,255,0.85)]">
+                    <p className="text-body-xs sm:text-body mt-4 text-[rgba(255,255,255,0.85)]">
                       {value}
                     </p>
                   )}
@@ -300,7 +303,7 @@ export default function ContactFormSection() {
                   aria-label={label}
                   className={cn(
                     TILE,
-                    "hover:text-gold-300 size-40 rounded-[11px] border border-[#2A4256] bg-[#152F42] text-white transition-colors duration-200 hover:bg-white/15"
+                    "hover:text-gold-300 size-40 rounded-[11px] border border-[#2A4256] bg-[#152F42] text-text-inverse transition-colors duration-200 hover:bg-white/15"
                   )}
                 >
                   <Icon className="size-18" />
