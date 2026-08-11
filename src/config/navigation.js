@@ -19,7 +19,7 @@ export const navGroups = [
     items: [
       {
         label: "My Properties",
-        href: "/properties",
+        href: "/",
         icon: PropertiesIcon,
         disabled: true,
       },
