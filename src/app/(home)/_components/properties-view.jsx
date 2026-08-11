@@ -2,6 +2,10 @@ import { PageHeader } from "@/components/common/page-header";
 
 import { PropertyCard } from "./property-card";
 
+// The client review only covers the page header for now, so the portfolio
+// list and its count stay hidden. Flip this to `true` to bring them back.
+const SHOW_PROPERTY_LIST = false;
+
 /**
  * "My Properties" — the portfolio list that opens the Buyer Portal. The count
  * sits at the end of the header row on desktop and drops under the intro copy
@@ -16,21 +20,25 @@ const PropertiesView = ({ properties }) => (
         title="Properties"
         description="The homes you own with Kapuria. Jump straight into any property’s drawings, photos and documents."
       />
-      <p className="text-body text-text-secondary">
-        {properties.length}{" "}
-        {properties.length === 1 ? "property" : "properties"}
-      </p>
+      {SHOW_PROPERTY_LIST ? (
+        <p className="text-body text-text-secondary">
+          {properties.length}{" "}
+          {properties.length === 1 ? "property" : "properties"}
+        </p>
+      ) : null}
     </div>
 
-    <div className="grid grid-cols-1 gap-16 md:grid-cols-2 xl:grid-cols-1 lg:gap-24">
-      {properties.map((property, index) => (
-        <PropertyCard
-          key={property.id}
-          property={property}
-          priority={index === 0}
-        />
-      ))}
-    </div>
+    {SHOW_PROPERTY_LIST ? (
+      <div className="grid grid-cols-1 gap-16 md:grid-cols-2 xl:grid-cols-1 lg:gap-24">
+        {properties.map((property, index) => (
+          <PropertyCard
+            key={property.id}
+            property={property}
+            priority={index === 0}
+          />
+        ))}
+      </div>
+    ) : null}
   </div>
 );
 
