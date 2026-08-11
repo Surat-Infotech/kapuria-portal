@@ -28,12 +28,11 @@ export const navGroups = [
   {
     label: "Account",
     items: [
-      { label: "Profile", href: "/profile", icon: ProfileIcon, disabled: true },
+      { label: "Profile", href: "/profile", icon: ProfileIcon },
       {
         label: "Account Settings",
         href: "/settings",
         icon: SettingsIcon,
-        disabled: true,
       },
     ],
   },
