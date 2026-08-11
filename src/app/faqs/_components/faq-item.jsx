@@ -30,7 +30,7 @@ const FaqItem = ({ item, open, onToggle }) => (
         </span>
         <ChevronDownIcon
           className={cn(
-            "mt-4 size-20 shrink-0 text-text-secondary transition-transform duration-200 ease-out",
+            "mt-4 size-20 shrink-0 text-text-accent transition-transform duration-200 ease-out",
             open && "rotate-180"
           )}
         />
