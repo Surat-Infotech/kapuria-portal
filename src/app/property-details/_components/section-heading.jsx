@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
  * Pass `rule={false}` for a title that stands on its own.
  */
 const SectionHeading = ({ children, rule = true, className }) => (
-  <div className={cn("flex items-center gap-16", className)}>
+  <div className={cn("flex items-center gap-8", className)}>
     <h2 className="text-h4 shrink-0 font-semibold text-text-primary">
       {children}
     </h2>

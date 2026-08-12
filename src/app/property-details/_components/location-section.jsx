@@ -11,8 +11,8 @@ const STICKY = "lg:sticky lg:top-24";
 
 const LocationSection = ({ nearby, mapLabel, mapQuery }) => (
   <div className="grid gap-16 lg:grid-cols-[208px_1fr] lg:items-start lg:gap-24">
-    <div className={`order-2 py-0 xl:py-24 lg:order-1 ${STICKY}`}>
-      <h3 className="text-h5 hidden pb-8 font-semibold text-text-primary lg:block">
+    <div className={`relative order-2 py-0 xl:py-24 lg:order-1 ${STICKY}`}>
+      <h3 className="text-h5 hidden pb-16 font-semibold border-b border-border-subtle text-text-primary lg:block">
         Nearby Locations
       </h3>
 
@@ -31,6 +31,11 @@ const LocationSection = ({ nearby, mapLabel, mapQuery }) => (
           </li>
         ))}
       </ul>
+
+      {/* The sticky column outruns the map on tall lists, so the tail fades
+          into the page instead of ending on a hard cut. Masking the whole
+          overlay ramps the page tint and the blur together. */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0  h-96 bg-background backdrop-blur-[2px] mask-[linear-gradient(to_bottom,transparent,black)] lg:h-250" />
     </div>
 
     <div
