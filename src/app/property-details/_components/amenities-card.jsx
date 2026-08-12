@@ -32,7 +32,7 @@ const AmenitiesCard = ({ amenities }) => (
         return (
           <li key={label} className="flex items-center gap-12">
             {Icon ? (
-              <Icon className="size-44 shrink-0 text-text-accent" />
+              <Icon className="size-44 shrink-0 text-[#DFB367]" />
             ) : null}
             <span className="text-body-xs font-semibold text-text-primary sm:text-body">
               {/* A qualifier the two narrow columns on mobile can't hold
