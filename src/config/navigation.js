@@ -44,7 +44,7 @@ export const navGroups = [
         href: "/contact",
         icon: ContactIcon,
       },
-      { label: "FAQs", href: "/faq", icon: FaqsIcon },
+      { label: "FAQs", href: "/faqs", icon: FaqsIcon },
     ],
   },
 ];
