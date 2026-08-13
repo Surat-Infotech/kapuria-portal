@@ -28,12 +28,11 @@ export const navGroups = [
   {
     label: "Account",
     items: [
-      { label: "Profile", href: "/profile", icon: ProfileIcon, disabled: true },
+      { label: "Profile", href: "/profile", icon: ProfileIcon },
       {
         label: "Account Settings",
         href: "/settings",
         icon: SettingsIcon,
-        disabled: true,
       },
     ],
   },
@@ -44,9 +43,8 @@ export const navGroups = [
         label: "Contact Us",
         href: "/contact",
         icon: ContactIcon,
-        disabled: true,
       },
-      { label: "FAQs", href: "/faq", icon: FaqsIcon, disabled: true },
+      { label: "FAQs", href: "/faqs", icon: FaqsIcon },
     ],
   },
 ];
