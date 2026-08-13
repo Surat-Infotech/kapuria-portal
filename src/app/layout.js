@@ -1,4 +1,7 @@
 import { Montserrat, Playfair_Display } from "next/font/google";
+
+import { RouteLoader } from "@/components/common/route-loader";
+
 import "./globals.css";
 
 const montserrat = Montserrat({
@@ -36,7 +39,10 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${montserrat.variable} ${playfairDisplay.variable} h-full antialiased`}
     >
-      <body>{children}</body>
+      <body>
+        {children}
+        <RouteLoader />
+      </body>
     </html>
   );
 }
