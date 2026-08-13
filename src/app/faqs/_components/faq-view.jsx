@@ -46,10 +46,9 @@ const FaqView = ({ categories }) => {
   );
 
   const [query, setQuery] = useState("");
-  // First question of every category opens by default, as in the design.
-  const [openIds, setOpenIds] = useState(
-    () => new Set(numbered.map((category) => category.items[0]?.id).filter(Boolean))
-  );
+  // Every question starts collapsed — the page opens quiet and the reader
+  // expands only what they came for.
+  const [openIds, setOpenIds] = useState(() => new Set());
 
   const term = query.trim().toLowerCase();
 
