@@ -37,7 +37,7 @@ const PropertyTabs = ({ slug, activeSegment = "" }) => (
             // instead of floating a pixel above it.
             "text-body-xs -mb-px flex shrink-0 items-center gap-4 border-b-2 py-8 whitespace-nowrap transition-colors duration-200 ease-out outline-none focus-visible:text-text-primary",
             active
-              ? "border-gold-400 font-semibold text-text-primary px-4"
+              ? "border-[#9A6B21] font-semibold text-text-primary px-4"
               : "border-transparent font-medium text-text-secondary px-8 hover:text-text-primary"
           )}
         >

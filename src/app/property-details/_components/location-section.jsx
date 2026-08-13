@@ -25,7 +25,7 @@ const LocationSection = ({ nearby, mapLabel, mapQuery }) => (
             <span className="text-body font-medium text-text-primary lg:text-[16px]/[24px]">
               {place}
             </span>
-            <span className="text-body shrink-0 text-[rgba(8,34,53)0.60]">
+            <span className="text-body shrink-0 text-[rgba(8,34,53,0.60)]">
               {distance}
             </span>
           </li>
@@ -35,13 +35,13 @@ const LocationSection = ({ nearby, mapLabel, mapQuery }) => (
       {/* The sticky column outruns the map on tall lists, so the tail fades
           into the page instead of ending on a hard cut. Masking the whole
           overlay ramps the page tint and the blur together. */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0  h-96 bg-background backdrop-blur-[2px] mask-[linear-gradient(to_bottom,transparent,black)] lg:h-250" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0  h-96 bg-background backdrop-blur-[2px] mask-[linear-gradient(to_bottom,transparent,black)] lg:h-150" />
     </div>
 
     <div
       className={`order-1 rounded-2xl border border-border-subtle bg-surface p-16 lg:order-2 lg:p-24 ${STICKY}`}
     >
-      <div className="aspect-311/210 relative overflow-hidden rounded-2xl bg-surface-sunken lg:aspect-824/484">
+      <div className="aspect-311/210 relative overflow-hidden rounded-2xl border border-[#DFB367] bg-surface-sunken lg:aspect-824/484">
         <iframe
           title={mapLabel}
           src={mapEmbedSrc(mapQuery ?? mapLabel)}
