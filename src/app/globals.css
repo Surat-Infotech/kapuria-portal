@@ -178,6 +178,25 @@
 
   --text-link: 12px;
   --text-link--line-height: 18px;
+
+  /* Dialog entrances. Run as keyframes rather than as a state-driven
+     transition so they start on the element's first painted frame — waiting a
+     render for React to flip a class is dead time the user reads as lag. The
+     matching exits are transitions, since by then the panel is on screen. */
+  --animate-sheet-rise: sheet-rise 300ms ease-out;
+  --animate-backdrop-in: backdrop-in 300ms ease-out;
+
+  @keyframes sheet-rise {
+    from {
+      transform: translateY(100%);
+    }
+  }
+
+  @keyframes backdrop-in {
+    from {
+      opacity: 0;
+    }
+  }
 }
 
 body {
