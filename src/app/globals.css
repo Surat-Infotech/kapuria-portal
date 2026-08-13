@@ -186,6 +186,43 @@ body {
   font-family: var(--font-sans);
 }
 
+/* Route transition veil: the seal breathes while a gold band sweeps the
+   bottom edge. Registered on @theme so `animate-pulse-soft` / `animate-sweep`
+   work as ordinary utilities. */
+@theme {
+  --animate-pulse-soft: pulse-soft 1.6s ease-in-out infinite;
+  --animate-sweep: sweep 1.1s ease-in-out infinite;
+
+  @keyframes pulse-soft {
+    0%,
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.82;
+      transform: scale(0.97);
+    }
+  }
+
+  @keyframes sweep {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(400%);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse-soft,
+  .animate-sweep,
+  .animate-spin {
+    animation: none;
+  }
+}
+
 /* Slim gold scrollbar for the sidebar — the default chrome one is too heavy
    against the navy panel. Firefox gets the two-value `scrollbar-color`; the
    WebKit pseudo-elements cover Chrome, Edge and Safari. */
