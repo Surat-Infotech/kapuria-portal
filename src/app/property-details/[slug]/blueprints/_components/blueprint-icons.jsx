@@ -18,42 +18,50 @@ const iconProps = {
   "aria-hidden": true,
 };
 
+// Arrow over a bare baseline rather than into a tray — the heavier 1.8 stroke
+// is what holds it together at 16px.
 export const DownloadIcon = (props) => (
-  <svg {...iconProps} {...props}>
-    <path d="M8 2V10.5" />
-    <path d="M4.75 7.5L8 10.75L11.25 7.5" />
-    <path d="M2.75 11.25V12.5C2.75 13.0523 3.19772 13.5 3.75 13.5H12.25C12.8023 13.5 13.25 13.0523 13.25 12.5V11.25" />
+  <svg {...iconProps} strokeWidth={1.8} {...props}>
+    <path d="M7.9987 2V10M5.33203 7.33333L7.9987 10L10.6654 7.33333" />
+    <path d="M3.33203 14H12.6654" />
   </svg>
 );
 
+// A 13×13 artboard, matching the stamp it sits in — the body it pairs with is
+// smaller than the button labels the rest of these icons serve.
 export const CalendarIcon = (props) => (
-  <svg {...iconProps} strokeWidth={1.3} {...props}>
-    <path d="M3.25 3.25H12.75C13.0261 3.25 13.25 3.47386 13.25 3.75V12.75C13.25 13.0261 13.0261 13.25 12.75 13.25H3.25C2.97386 13.25 2.75 13.0261 2.75 12.75V3.75C2.75 3.47386 2.97386 3.25 3.25 3.25Z" />
-    <path d="M2.75 6.25H13.25" />
-    <path d="M5.5 2V4.25M10.5 2V4.25" />
+  <svg {...iconProps} viewBox="0 0 13 13" strokeWidth={1.7} {...props}>
+    <rect x="1.625" y="2.4375" width="9.75" height="8.6667" rx="1.0833" />
+    <path d="M1.625 4.8763H11.375" />
+    <path d="M4.33333 1.35547V3.52214M8.66667 1.35547V3.52214" />
   </svg>
 );
 
 // Two arrows running opposite ways — the control changes the order, it does not
 // point at one.
+// The one icon here drawn on a 15×15 artboard, so its arrowheads land on whole
+// pixels at the 15px the toolbar renders it at.
 export const SortIcon = (props) => (
-  <svg {...iconProps} {...props}>
-    <path d="M4.75 2.75V13.25M4.75 13.25L2.5 11M4.75 13.25L7 11" />
-    <path d="M11.25 13.25V2.75M11.25 2.75L9 5M11.25 2.75L13.5 5" />
+  <svg {...iconProps} viewBox="0 0 15 15" strokeWidth={1.8} {...props}>
+    <path d="M4.375 2.5V12.5M6.25 10.625L4.375 12.5L2.5 10.625" />
+    <path d="M10.625 12.5V2.5M12.5 4.375L10.625 2.5L8.75 4.375" />
   </svg>
 );
 
 export const GridViewIcon = (props) => (
-  <svg {...iconProps} strokeWidth={1.3} {...props}>
-    <path d="M2.75 2.75H6.75V6.75H2.75V2.75Z" />
-    <path d="M9.25 2.75H13.25V6.75H9.25V2.75Z" />
-    <path d="M2.75 9.25H6.75V13.25H2.75V9.25Z" />
-    <path d="M9.25 9.25H13.25V13.25H9.25V9.25Z" />
+  <svg {...iconProps} strokeWidth={1.8} {...props}>
+    <rect x="2" y="2" width="4.6667" height="4.6667" rx="0.6667" />
+    <rect x="9.3333" y="2" width="4.6667" height="4.6667" rx="0.6667" />
+    <rect x="2" y="9.3333" width="4.6667" height="4.6667" rx="0.6667" />
+    <rect x="9.3333" y="9.3333" width="4.6667" height="4.6667" rx="0.6667" />
   </svg>
 );
 
+// The bullets are zero-length segments — they only show as dots because the
+// shared props round the caps.
 export const ListViewIcon = (props) => (
-  <svg {...iconProps} strokeWidth={1.5} {...props}>
-    <path d="M2.75 4H13.25M2.75 8H13.25M2.75 12H13.25" />
+  <svg {...iconProps} strokeWidth={1.8} {...props}>
+    <path d="M5.33203 4H13.9987M5.33203 8H13.9987M5.33203 12H13.9987" />
+    <path d="M2.33203 4H2.3387M2.33203 8H2.3387M2.33203 12H2.3387" />
   </svg>
 );

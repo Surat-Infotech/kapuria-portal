@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 
 import { PageHeader } from "@/components/common/page-header";
 import { Button } from "@/components/ui/button";
@@ -20,6 +20,7 @@ import { ChevronRightIcon } from "../../../_components/property-icons";
 import { DownloadIcon } from "./blueprint-icons";
 import { DisciplineChips } from "./discipline-chips";
 import { DrawingCard, DrawingRow } from "./drawing-card";
+import { DrawingPreviewDialog } from "./drawing-preview-dialog";
 import { DrawingsToolbar } from "./drawings-toolbar";
 
 const ALL = "all";
@@ -40,6 +41,15 @@ const BlueprintsView = ({ property, drawings }) => {
   const [floor, setFloor] = useState(ALL);
   const [sort, setSort] = useState("newest");
   const [view, setView] = useState("grid");
+
+  // The sheet a buyer pressed Preview on, or null while the list is at rest.
+  // Held here rather than per card so only one dialog can ever be open, and so
+  // the grid and the list share it.
+  const [preview, setPreview] = useState(null);
+
+  // Stable, so the dialog's mount effect does not re-run on every render of
+  // this view.
+  const closePreview = useCallback(() => setPreview(null), []);
 
   // Both rails are built from this property's own drawings: a discipline or a
   // storey nobody has a sheet for never gets a control the buyer can press into
@@ -140,39 +150,35 @@ const BlueprintsView = ({ property, drawings }) => {
           </li>
         </ol>
       </nav>
+      <div className="flex justify-between items-start flex-col gap-18 md:gap-16 md:items-center md:flex-row lg:items-start lg:flex-col xl:items-end xl:flex-row">
+        <PageHeader
+          eyebrow="Project documents"
+          accent="Blueprints"
+          title="& Drawings"
+          description="Every sanctioned drawing for your villa, organised by discipline and floor — always the latest approved revision."
+        />
 
-      <PageHeader
-        eyebrow="Project documents"
-        accent="Blueprints"
-        title="& Drawings"
-        description="Every sanctioned drawing for your villa, organised by discipline and floor — always the latest approved revision."
-        action={
-          drawings.length > 0 ? (
-            // Mobile leads with the action and follows with the count; desktop
-            // reverses that, which is what the `order` classes are doing.
-            <div className="flex w-full flex-col gap-12 lg:w-auto lg:items-end lg:gap-16">
-              <p className="order-2 text-center text-body-xs text-text-secondary lg:order-1 lg:text-right">
-                Last updated{" "}
-                <span className="font-semibold text-text-primary">
-                  {formatLongDate(lastUpdated)}
-                </span>{" "}
-                · {drawings.length} drawings
-              </p>
+        <div className="flex w-full flex-col gap-8 sm:w-auto sm:items-end lg:items-start xl:items-end md:gap-12">
+          <p className="order-2 justify-center text-body-xs flex gap-5 text-text-secondary md:order-1 lg:justify-end">
+            Last updated{" "}
+            <span className="font-semibold text-text-primary">
+              {formatLongDate(lastUpdated)}
+            </span>{" "}
+            · {drawings.length} drawings
+          </p>
 
-              <Button
-                asChild
-                width="full"
-                className="order-1 py-14 font-medium lg:order-2 lg:w-auto lg:px-28"
-              >
-                <a href={drawingsArchiveHref(property.slug)} download>
-                  <DownloadIcon className="size-16 shrink-0 text-gold-300" />
-                  Download all (ZIP)
-                </a>
-              </Button>
-            </div>
-          ) : null
-        }
-      />
+          <Button
+            asChild
+            width="full"
+            className="order-1 py-12 px-20 font-semibold md:order-2 md:w-auto"
+          >
+            <a href={drawingsArchiveHref(property.slug)} download>
+              <DownloadIcon className="size-16 shrink-0 text-[#E7BE7B]" />
+              Download all (ZIP)
+            </a>
+          </Button>
+        </div>
+      </div>
 
       {drawings.length === 0 ? (
         <div className="rounded-2xl border border-border-subtle bg-surface px-20 py-40 text-center">
@@ -188,7 +194,7 @@ const BlueprintsView = ({ property, drawings }) => {
         <>
           {/* The rule closes the header block on mobile, where the chips sit
               directly beneath it; desktop separates them with whitespace. */}
-          <div className="h-px bg-border-subtle lg:hidden" />
+          <div className="h-px my-8 bg-border-subtle lg:hidden" />
 
           <DisciplineChips
             chips={chips}
@@ -224,13 +230,14 @@ const BlueprintsView = ({ property, drawings }) => {
               </Button>
             </div>
           ) : view === "grid" ? (
-            <div className="grid gap-16 md:grid-cols-2 xl:grid-cols-3">
+            <div className="grid gap-16 md:gap-24 sm:grid-cols-2 xl:grid-cols-3">
               {visible.map((drawing) => (
                 <DrawingCard
                   key={drawing.id}
                   drawing={drawing}
                   floorBadge={floorBadges.get(drawing.floor)}
                   disciplineLabel={disciplineLabels.get(drawing.discipline)}
+                  onPreview={setPreview}
                 />
               ))}
             </div>
@@ -242,12 +249,17 @@ const BlueprintsView = ({ property, drawings }) => {
                   drawing={drawing}
                   floorBadge={floorBadges.get(drawing.floor)}
                   disciplineLabel={disciplineLabels.get(drawing.discipline)}
+                  onPreview={setPreview}
                 />
               ))}
             </div>
           )}
         </>
       )}
+
+      {preview ? (
+        <DrawingPreviewDialog drawing={preview} onClose={closePreview} />
+      ) : null}
     </div>
   );
 };

@@ -5,36 +5,6 @@ import sheetDimensionedPlan from "@/assets/images/blueprints-drawing/blue-prints
 import sheetElevationPlan from "@/assets/images/blueprints-drawing/blue-prints-5.webp";
 import sheetUpperPlanPrior from "@/assets/images/blueprints-drawing/blue-prints-6.webp";
 
-/**
- * The sanctioned drawing set behind `/property-details/[slug]/blueprints` —
- * one page per property, reached from that property's Blueprints tab.
- *
- * Documents are kept out of `properties.js` on purpose: the properties record
- * describes the house, this one describes the paperwork issued for it, and the
- * two will arrive from different endpoints. The page only ever reads through
- * `getDrawingsForProperty`, so swapping this file for a fetch is a one-line
- * change there.
- *
- * Per drawing:
- *   discipline — key into DRAWING_DISCIPLINES; drives the filter chips, and a
- *                discipline nobody has drawings for never gets a chip.
- *   floor      — key into DRAWING_FLOORS, or `null` for a sheet that covers the
- *                whole villa (elevations, sections, the site layout). Those
- *                survive every floor filter, because an elevation is just as
- *                relevant whichever storey the buyer is looking at.
- *   current    — the latest approved revision. `false` is a sheet kept for the
- *                record after a re-issue; the card labels it Superseded so a
- *                buyer never builds off a drawing that has moved on.
- *   updated    — ISO date. Sorting and both display formats derive from it, so
- *                nothing here is a pre-formatted string that could drift.
- *   image      — the sheet thumbnail. `blue-prints-2` and `blue-prints-6` are
- *                the same scan, so they are only ever used as a plan and its
- *                own superseded revision — the repeat on screen is then the
- *                truth about the sheet rather than a stand-in that ran out.
- *   file       — placeholder path until the documents service hands back signed
- *                URLs. The shape is what matters; nothing is served from it yet.
- */
-
 export const DRAWING_DISCIPLINES = [
   { key: "floor-plan", label: "Floor Plans", short: "Floor Plan" },
   { key: "sectional", label: "Sectional", short: "Sectional" },
@@ -46,19 +16,25 @@ export const DRAWING_DISCIPLINES = [
 ];
 
 // `badge` is what the thumbnail corner carries — it has room for four
-// characters and no more.
+// characters and no more. `label` is the filter chip, kept short so the rail
+// fits; `name` is the spelled-out form the preview panel states.
 export const DRAWING_FLOORS = [
-  { key: "ground", label: "Ground", badge: "G/F" },
-  { key: "first", label: "First", badge: "1/F" },
-  { key: "second", label: "Second", badge: "2/F" },
-  { key: "terrace", label: "Terrace", badge: "T/F" },
+  { key: "ground", label: "Ground", badge: "G/F", name: "Ground Floor" },
+  { key: "first", label: "First", badge: "1/F", name: "First Floor" },
+  { key: "second", label: "Second", badge: "2/F", name: "Second Floor" },
+  { key: "terrace", label: "Terrace", badge: "T/F", name: "Terrace" },
 ];
 
+/**
+ * Who drew the sheets. One studio covers every drawing in both sets today, so
+ * it is stated once rather than repeated on each record — it moves onto the
+ * drawing itself when the documents service starts issuing real metadata.
+ */
+export const DRAWING_AUTHOR = "Kapuria Design Studio";
 
-// Six sheets per property — the set the project team has released to the buyer,
-// not the full drawing register. Both properties draw on the same six scans;
-// what differs is the register around them: which disciplines are open, which
-// storeys are covered, the revision each sheet is at, and when it was issued.
+// The full sanctioned set for a villa still under construction: every
+// discipline issued so far, all four storeys, and one superseded sheet kept on
+// record after re-issue.
 const serenityPalmsDrawings = [
   {
     id: "spm-fp-01",
@@ -89,18 +65,46 @@ const serenityPalmsDrawings = [
     file: "/documents/serenity-palms/first-floor-plan.pdf",
   },
   {
-    id: "spm-elv-01",
-    title: "Front Elevation & Section",
-    discipline: "elevation",
-    floor: null,
+    id: "spm-fp-03",
+    title: "Second Floor Plan",
+    discipline: "floor-plan",
+    floor: "second",
     scale: "1:100",
     revision: "Rev C",
     format: "PDF",
-    size: "2.9 MB",
+    size: "2.6 MB",
     updated: "2024-05-28",
     current: true,
     image: sheetProposedBuilding,
-    file: "/documents/serenity-palms/front-elevation-section.pdf",
+    file: "/documents/serenity-palms/second-floor-plan.pdf",
+  },
+  {
+    id: "spm-fp-04",
+    title: "Terrace Floor Plan",
+    discipline: "floor-plan",
+    floor: "terrace",
+    scale: "1:100",
+    revision: "Rev B",
+    format: "PDF",
+    size: "2.1 MB",
+    updated: "2024-04-22",
+    current: true,
+    image: sheetElevationPlan,
+    file: "/documents/serenity-palms/terrace-floor-plan.pdf",
+  },
+  {
+    id: "spm-fp-05",
+    title: "First Floor Plan",
+    discipline: "floor-plan",
+    floor: "first",
+    scale: "1:100",
+    revision: "Rev C",
+    format: "PDF",
+    size: "2.7 MB",
+    updated: "2024-03-18",
+    current: false,
+    image: sheetUpperPlanPrior,
+    file: "/documents/serenity-palms/first-floor-plan-rev-c.pdf",
   },
   {
     id: "spm-sec-01",
@@ -117,6 +121,20 @@ const serenityPalmsDrawings = [
     file: "/documents/serenity-palms/section-aa.pdf",
   },
   {
+    id: "spm-sec-02",
+    title: "Section B–B",
+    discipline: "sectional",
+    floor: null,
+    scale: "1:100",
+    revision: "Rev C",
+    format: "PDF",
+    size: "2.0 MB",
+    updated: "2024-05-28",
+    current: true,
+    image: sheetElevationPlan,
+    file: "/documents/serenity-palms/section-bb.pdf",
+  },
+  {
     id: "spm-fnd-01",
     title: "Site Layout Plan",
     discipline: "foundation",
@@ -131,18 +149,144 @@ const serenityPalmsDrawings = [
     file: "/documents/serenity-palms/site-layout-plan.pdf",
   },
   {
-    id: "spm-fp-03",
-    title: "First Floor Plan",
-    discipline: "floor-plan",
+    id: "spm-fnd-02",
+    title: "Foundation Layout Plan",
+    discipline: "foundation",
+    floor: null,
+    scale: "1:100",
+    revision: "Rev B",
+    format: "PDF",
+    size: "4.2 MB",
+    updated: "2024-04-08",
+    current: true,
+    image: sheetDimensionedPlan,
+    file: "/documents/serenity-palms/foundation-layout-plan.pdf",
+  },
+  {
+    id: "spm-str-01",
+    title: "Column & Beam Schedule",
+    discipline: "structure",
+    floor: null,
+    scale: "1:50",
+    revision: "Rev B",
+    format: "PDF",
+    size: "1.4 MB",
+    updated: "2024-04-08",
+    current: true,
+    image: sheetElevationBlock,
+    file: "/documents/serenity-palms/column-beam-schedule.pdf",
+  },
+  {
+    id: "spm-str-02",
+    title: "Slab Reinforcement Plan",
+    discipline: "structure",
     floor: "first",
+    scale: "1:50",
+    revision: "Rev B",
+    format: "PDF",
+    size: "3.8 MB",
+    updated: "2024-03-26",
+    current: true,
+    image: sheetUpperPlan,
+    file: "/documents/serenity-palms/slab-reinforcement-plan.pdf",
+  },
+  {
+    id: "spm-str-03",
+    title: "Staircase Structural Detail",
+    discipline: "structure",
+    floor: null,
+    scale: "1:25",
+    revision: "Rev A",
+    format: "PDF",
+    size: "1.1 MB",
+    updated: "2024-02-14",
+    current: true,
+    image: sheetUpperPlanPrior,
+    file: "/documents/serenity-palms/staircase-structural-detail.pdf",
+  },
+  {
+    id: "spm-elv-01",
+    title: "Front Elevation & Section",
+    discipline: "elevation",
+    floor: null,
+    scale: "1:100",
+    revision: "Rev C",
+    format: "PDF",
+    size: "2.9 MB",
+    updated: "2024-05-28",
+    current: true,
+    image: sheetProposedBuilding,
+    file: "/documents/serenity-palms/front-elevation-section.pdf",
+  },
+  {
+    id: "spm-elv-02",
+    title: "Side & Rear Elevation",
+    discipline: "elevation",
+    floor: null,
     scale: "1:100",
     revision: "Rev C",
     format: "PDF",
     size: "2.7 MB",
-    updated: "2024-03-18",
-    current: false,
+    updated: "2024-05-14",
+    current: true,
+    image: sheetElevationBlock,
+    file: "/documents/serenity-palms/side-rear-elevation.pdf",
+  },
+  {
+    id: "spm-elec-01",
+    title: "Ground Floor Electrical Layout",
+    discipline: "electrical",
+    floor: "ground",
+    scale: "1:100",
+    revision: "Rev B",
+    format: "PDF",
+    size: "2.4 MB",
+    updated: "2024-05-06",
+    current: true,
+    image: sheetDimensionedPlan,
+    file: "/documents/serenity-palms/ground-floor-electrical-layout.pdf",
+  },
+  {
+    id: "spm-elec-02",
+    title: "First Floor Electrical Layout",
+    discipline: "electrical",
+    floor: "first",
+    scale: "1:100",
+    revision: "Rev B",
+    format: "PDF",
+    size: "2.3 MB",
+    updated: "2024-05-06",
+    current: true,
+    image: sheetUpperPlan,
+    file: "/documents/serenity-palms/first-floor-electrical-layout.pdf",
+  },
+  {
+    id: "spm-hvac-01",
+    title: "Ground Floor HVAC Layout",
+    discipline: "hvac",
+    floor: "ground",
+    scale: "1:100",
+    revision: "Rev A",
+    format: "PDF",
+    size: "1.9 MB",
+    updated: "2024-04-30",
+    current: true,
+    image: sheetProposedBuilding,
+    file: "/documents/serenity-palms/ground-floor-hvac-layout.pdf",
+  },
+  {
+    id: "spm-hvac-02",
+    title: "First Floor HVAC & Ducting",
+    discipline: "hvac",
+    floor: "first",
+    scale: "1:100",
+    revision: "Rev A",
+    format: "PDF",
+    size: "1.8 MB",
+    updated: "2024-04-30",
+    current: true,
     image: sheetUpperPlanPrior,
-    file: "/documents/serenity-palms/first-floor-plan-rev-c.pdf",
+    file: "/documents/serenity-palms/first-floor-hvac-ducting.pdf",
   },
 ];
 

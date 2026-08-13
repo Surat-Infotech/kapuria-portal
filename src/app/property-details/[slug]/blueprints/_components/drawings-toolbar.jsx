@@ -48,7 +48,7 @@ const SortMenu = ({ value, onChange }) => {
         aria-haspopup="menu"
         aria-expanded={open}
         onClick={() => setOpen((wasOpen) => !wasOpen)}
-        className="flex h-40 cursor-pointer items-center gap-8 rounded-[10px] border border-border-default bg-surface px-14 text-body-xs font-semibold text-text-primary transition-colors duration-200 ease-out outline-none hover:bg-surface-sunken focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+        className="flex h-38 cursor-pointer items-center gap-8 rounded-[10px] bg-[#EFE7DA] px-12 text-body-xs font-semibold text-text-primary transition-colors duration-200 ease-out outline-none hover:bg-surface-sunken focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
       >
         <SortIcon className="size-15 shrink-0 text-text-secondary" />
         {current?.label ?? SORT_OPTIONS[0].label}
@@ -86,7 +86,7 @@ const SortMenu = ({ value, onChange }) => {
 };
 
 const ViewToggle = ({ value, onChange }) => (
-  <div className="flex shrink-0 items-center gap-2 rounded-[10px] border border-border-default bg-surface p-3">
+  <div className="flex shrink-0 items-center gap-2 rounded-[10px] bg-[#EFE7DA] p-4">
     {[
       { key: "grid", label: "Grid view", Icon: GridViewIcon },
       { key: "list", label: "List view", Icon: ListViewIcon },
@@ -98,9 +98,9 @@ const ViewToggle = ({ value, onChange }) => (
         aria-pressed={value === key}
         onClick={() => onChange(key)}
         className={cn(
-          "flex size-32 cursor-pointer items-center justify-center rounded-[8px] transition-colors duration-200 ease-out outline-none focus-visible:ring-2 focus-visible:ring-gold-400",
+          "flex size-30 cursor-pointer items-center justify-center rounded-[8px] transition-colors duration-200 ease-out outline-none focus-visible:ring-2 focus-visible:ring-gold-400",
           value === key
-            ? "bg-surface-sunken text-text-primary"
+            ? "bg-surface text-text-primary"
             : "bg-transparent text-text-secondary hover:text-text-primary"
         )}
       >
@@ -120,16 +120,16 @@ const DrawingsToolbar = ({
   onViewChange,
   shown,
 }) => (
-  <div className="flex flex-col gap-12 rounded-2xl border border-border-subtle bg-surface p-10 lg:flex-row lg:items-center lg:justify-between lg:gap-16 lg:py-8 lg:pr-12 lg:pl-20">
-    <div className="flex min-w-0 items-center gap-14">
-      <span className="hidden shrink-0 text-[11px]/[16px] font-semibold tracking-[1.6px] text-text-secondary uppercase sm:block">
+  <div className="flex flex-col gap-16 rounded-2xl border border-border-subtle bg-surface px-16 py-14 lg:flex-row lg:items-center lg:justify-between lg:gap-16">
+    <div className="flex min-w-0 items-center gap-16">
+      <span className="shrink-0 text-[12px]/[18px] font-semibold tracking-[1.6px] text-text-muted uppercase block">
         Floor
       </span>
 
       <div
         role="group"
         aria-label="Filter drawings by floor"
-        className="flex min-w-0 gap-4 overflow-x-auto rounded-[12px] bg-surface-sunken p-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="flex min-w-0 gap-4 overflow-x-auto rounded-[11px] bg-surface-sunken p-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {floors.map(({ key, label }) => (
           <button
@@ -138,10 +138,10 @@ const DrawingsToolbar = ({
             aria-pressed={key === floor}
             onClick={() => onFloorChange(key)}
             className={cn(
-              "shrink-0 cursor-pointer rounded-[9px] px-16 py-7 text-body-xs transition-colors duration-200 ease-out outline-none focus-visible:ring-2 focus-visible:ring-gold-400",
+              "shrink-0 cursor-pointer rounded-[9px] font-semibold text-body-xs transition-all duration-200 ease-out outline-none focus-visible:ring-2 focus-visible:ring-gold-400",
               key === floor
-                ? "bg-surface font-semibold text-text-primary shadow-[0_1px_3px_rgba(11,34,51,0.12)]"
-                : "font-medium text-text-secondary hover:text-text-primary"
+                ? "bg-surface text-text-primary px-12 py-8"
+                : "text-text-secondary hover:text-text-primary px-8 py-8 lg:px-12"
             )}
           >
             {label}
@@ -150,7 +150,7 @@ const DrawingsToolbar = ({
       </div>
     </div>
 
-    <div className="flex shrink-0 items-center justify-between gap-12 lg:justify-end">
+    <div className="hidden lg:flex shrink-0 items-center justify-between gap-16 lg:justify-end">
       <p className="text-body-xs text-text-secondary">{shown} shown</p>
       <div className="flex items-center gap-8">
         <SortMenu value={sort} onChange={onSortChange} />

@@ -20,7 +20,8 @@ const DrawingThumbnail = ({
   className,
   children,
 }) => (
-  <div className={cn("relative isolate overflow-hidden bg-[#eceae4]", className)}>
+  <div className={cn(`relative isolate overflow-hidden [box-shadow:0_-12px_20px_0_rgba(15,44,73,0.15)_inset]
+ bg-[#eceae4]`, className)}>
     {src ? (
       <Image src={src} alt={alt} fill sizes={sizes} className="object-cover" />
     ) : (
