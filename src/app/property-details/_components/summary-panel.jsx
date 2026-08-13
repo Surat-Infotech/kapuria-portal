@@ -4,8 +4,8 @@ import { SectionHeading } from "./section-heading";
 import { SpecificationsCard } from "./specifications-card";
 
 const SummaryPanel = ({ property }) => (
-  <div className="flex flex-col gap-32">
-    <section className="flex flex-col gap-24">
+  <div className="flex flex-col gap-24">
+    <section className="flex flex-col gap-16 lg:gap-24">
       <SectionHeading rule={false}>Welcome to Your Property</SectionHeading>
 
       <div className="flex flex-col gap-16">

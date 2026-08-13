@@ -41,7 +41,7 @@ const PropertyDetailsView = ({ property }) => {
       </nav>
 
       <div className="hidden items-end justify-between gap-24 lg:flex">
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 sm:gap-8">
           <h1 className="text-display-sm font-semibold text-text-primary">
             {property.name}
           </h1>
@@ -53,11 +53,13 @@ const PropertyDetailsView = ({ property }) => {
         <ContactButton />
       </div>
 
-      <PropertyGallery property={property} />
+      <div className="flex flex-col gap-16">
+        <PropertyGallery property={property} />
 
-      {/* The design moves the action below the gallery on mobile, full width. */}
-      <div className="lg:hidden">
-        <ContactButton width="full" />
+        {/* The design moves the action below the gallery on mobile, full width. */}
+        <div className="lg:hidden">
+          <ContactButton width="full" />
+        </div>
       </div>
 
       {/* This page is the Summary destination; the rail lights that row and
