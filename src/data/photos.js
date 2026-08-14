@@ -142,7 +142,7 @@ const serenityPalmsPhotos = [
     caption: "Design visualisation",
     alt: "Doll's-house cutaway showing the ground floor layout",
     category: "3d",
-    generated: true,
+    // generated: true,
     captured: "2024-06-12",
     image: renderCutaway,
   },
@@ -152,7 +152,7 @@ const serenityPalmsPhotos = [
     caption: "Design visualisation",
     alt: "Cutaway render of the stair hall and living room",
     category: "3d",
-    generated: true,
+    // generated: true,
     captured: "2024-06-12",
     image: renderInterior,
   },
@@ -306,6 +306,7 @@ export const PHOTO_ARCHITECT = "Vikram Pannu";
 export const PHOTO_AUTHOR = "Kapuria Design Studio";
 export const PHOTO_FILE = {
   floor: "Ground Floor",
+  scale: "1:100",
   format: "PDF",
   size: "3.1 MB",
 };

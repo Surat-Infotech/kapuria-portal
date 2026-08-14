@@ -23,11 +23,12 @@ import { DownloadIcon, GeneratedIcon, RealPhotoIcon } from "./photo-icons";
 // below md, a centred two-column dialog above it. Only the record differs, and
 // the stamp laid over the frame.
 
-// The facts in the order the panel reads them. Room stands where the drawings
-// panel puts Scale — a buyer looking at an interior asks which room before
-// anything else, and a frame that is not of one room names the villa instead.
+// The facts in the order the panel reads them — Floor and Scale first, as the
+// drawings panel has them, then Room: a buyer looking at an interior asks which
+// room next, and a frame that is not of one room names the villa instead.
 const specRows = (photo) => [
   { label: "Floor", value: photo.floor ?? PHOTO_FILE.floor },
+  { label: "Scale", value: photo.scale ?? PHOTO_FILE.scale },
   { label: "Room", value: photoRoomLabel(photo) },
   { label: "Architect", value: PHOTO_ARCHITECT },
   { label: "Format", value: photo.format ?? PHOTO_FILE.format },
@@ -143,7 +144,7 @@ const PhotoPreviewDialog = ({ photo, onClose }) => {
             alt={`${photo.title} — ${photo.caption}`}
             priority
             sizes="(max-width: 767px) 100vw, (max-width: 1008px) 56vw, 538px"
-            className="h-300 w-full object-cover md:h-auto md:max-h-[70vh]"
+            className="h-300 w-full object-cover md:h-full"
           />
 
           <OriginBadge generated={photo.generated} />

@@ -9,22 +9,29 @@ import { PhotoCard } from "./photo-card";
 // on screen.
 
 const PhotoGrid = ({ photos, onOpen }) => (
-  <div className="grid grid-cols-2 gap-12 sm:gap-16 md:grid-cols-3 md:gap-24 xl:grid-cols-4">
+  <div className="grid grid-cols-2 gap-16 md:grid-cols-3 md:gap-24 xl:grid-cols-4">
     {photos.map((photo) => (
       <PhotoCard key={photo.id} photo={photo} onOpen={onOpen} />
     ))}
   </div>
 );
 
+// The room rail needs more air around it than a heading does, so the Indoor
+// band opens to 24 on desktop while every other band stays at 18. Mobile is 16
+// throughout.
 const PhotoSection = ({ label, total, photos, onOpen, children }) => (
-  <section className="flex flex-col gap-16 md:gap-20">
-    <div className="flex items-center gap-12">
-      <h2 className="shrink-0 text-h4 font-semibold text-text-primary">
-        {label}
-      </h2>
-      <p className="shrink-0 text-body-xs text-text-secondary">
-        {total} photos
-      </p>
+  <section
+    className={`flex flex-col gap-16 ${children ? "md:gap-24" : "md:gap-18"}`}
+  >
+    <div className="flex items-center gap-8 sm:gap-16">
+      <div className="flex items-center gap-8">
+        <h2 className="shrink-0 text-h4 font-semibold text-text-primary">
+          {label}
+        </h2>
+        <p className="shrink-0 text-body-xs text-text-secondary">
+          {total} photos
+        </p>
+      </div>
       <div className="h-px flex-1 bg-border-subtle" />
     </div>
 

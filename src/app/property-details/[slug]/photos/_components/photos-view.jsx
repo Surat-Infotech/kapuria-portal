@@ -20,9 +20,18 @@ import { PhotoSection } from "./photo-section";
 
 const ALL = "all";
 
+// The room rail opens on a room rather than on everything — Bedroom 1 for a
+// property shot in the usual order. Read off the rail's own order rather than
+// hardcoded, so a house whose interior shoot skipped Bedroom 1 opens on its
+// first room instead of on an empty grid.
+const firstIndoorRoom = (photos) =>
+  INDOOR_ROOMS.find(({ key }) =>
+    photos.some((photo) => photo.category === "indoor" && photo.room === key)
+  )?.key ?? ALL;
+
 const PhotosView = ({ property, photos }) => {
   const [category, setCategory] = useState(ALL);
-  const [room, setRoom] = useState(ALL);
+  const [room, setRoom] = useState(() => firstIndoorRoom(photos));
 
   // The frame the preview is open on, or null while the gallery is at rest.
   // Held here rather than per tile so only one dialog can ever be open, and so
@@ -147,7 +156,7 @@ const PhotosView = ({ property, photos }) => {
         />
 
         <div className="flex w-full flex-col gap-8 sm:w-auto sm:items-end lg:items-start xl:items-end md:gap-12">
-          <p className="order-2 justify-center text-body-xs flex gap-5 text-text-secondary md:order-1 lg:justify-end">
+          <p className="order-2 justify-center whitespace-nowrap text-body-xs flex gap-5 text-text-secondary md:order-1 lg:justify-end">
             Last updated{" "}
             <span className="font-semibold text-text-primary">
               {formatLongDate(lastUpdated)}
@@ -191,7 +200,7 @@ const PhotosView = ({ property, photos }) => {
             label="Filter photos by category"
           />
 
-          <div className="flex flex-col gap-32 md:gap-40">
+          <div className="flex flex-col gap-24 sm:gap-32 lg::gap-44">
             {sections.map((section) => (
               <PhotoSection
                 key={section.key}

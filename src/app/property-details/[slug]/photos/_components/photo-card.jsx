@@ -17,7 +17,7 @@ export const PHOTO_SIZES =
   "(max-width: 768px) 50vw, (max-width: 1536px) 33vw, 25vw";
 
 const GeneratedBadge = () => (
-  <span className="absolute top-14 right-14 z-10 inline-flex items-center gap-4 rounded-[30px] bg-[rgba(8,34,53,0.60)] px-8 py-4 text-[10px]/[14px] font-bold tracking-[0.5px] text-white uppercase backdrop-blur-[28px]">
+  <span className="absolute top-14 right-14 z-10 hidden md:inline-flex items-center gap-4 rounded-[30px] bg-[rgba(8,34,53,0.60)] px-8 py-4 text-[10px]/[14px] font-bold tracking-[0.5px] text-white uppercase backdrop-blur-[28px]">
     <GeneratedIcon className="h-12 w-14 shrink-0" />
     Generated
   </span>
@@ -28,7 +28,7 @@ const PhotoCard = ({ photo, onOpen }) => (
     type="button"
     onClick={() => onOpen(photo)}
     aria-label={`View ${photo.title} — ${photo.caption}`}
-    className="group relative isolate flex aspect-163/150 w-full cursor-pointer items-end overflow-hidden rounded-[18px] bg-surface-sunken text-left outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-background lg:aspect-259/185"
+    className="group relative isolate flex aspect-163/150 w-full cursor-pointer items-end overflow-hidden rounded-2xl bg-surface-sunken text-left outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-background lg:aspect-259/185"
   >
     <Image
       src={photo.image}
