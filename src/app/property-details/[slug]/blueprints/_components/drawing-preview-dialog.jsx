@@ -115,7 +115,7 @@ const DrawingPreviewDialog = ({ drawing, onClose }) => {
         )}
       >
         
-        <div className="flex relative shrink-0 flex-col border-b border-gold-300/70 bg-white w-full md:w-[56%] md:max-w-592 md:shrink md:justify-center md:border-r md:border-b-0 md:border-border-subtle">
+        <div className="flex relative shrink-0 flex-col border-b border-gold-300/70 bg-white w-full md:max-w-[56%] lg:max-w-592 md:shrink md:justify-center md:border-r md:border-b-0 md:border-border-subtle">
           <span
             aria-hidden
             className="mx-auto absolute top-8 left-1/2 -translate-1/2 h-4 w-40 shrink-0 rounded-full bg-[#082235] md:hidden"
