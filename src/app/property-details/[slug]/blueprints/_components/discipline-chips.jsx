@@ -22,7 +22,7 @@ const DisciplineChips = ({ chips, value, onChange }) => (
           aria-selected={active}
           onClick={() => onChange(key)}
           className={cn(
-            "flex shrink-0 cursor-pointer items-center font-semibold gap-4 border px-14 py-8 text-body-xs transition-colors duration-200 ease-out outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-background md:gap-8",
+            "flex shrink-0 cursor-pointer items-center font-semibold gap-4 border px-14 py-8 text-[10px]/[14px] sm:text-body-xs transition-colors duration-200 ease-out outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-background md:gap-8",
             active
               ? "border-navy-800 bg-navy-800 rounded-[10px] text-white"
               : "border-border-default bg-surface text-text-secondary hover:bg-surface-sunken rounded-full"
