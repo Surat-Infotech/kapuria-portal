@@ -159,7 +159,7 @@ const BlueprintsView = ({ property, drawings }) => {
         />
 
         <div className="flex w-full flex-col gap-8 sm:w-auto sm:items-end lg:items-start xl:items-end md:gap-12">
-          <p className="order-2 justify-center text-body-xs flex gap-5 text-text-secondary md:order-1 lg:justify-end">
+          <p className="order-2 whitespace-nowrap justify-center text-body-xs flex gap-5 text-text-secondary md:order-1 lg:justify-end">
             Last updated{" "}
             <span className="font-semibold text-text-primary">
               {formatLongDate(lastUpdated)}
