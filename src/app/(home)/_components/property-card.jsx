@@ -108,7 +108,7 @@ const PropertyCard = ({ property, priority = false }) => {
 
           <Button asChild className="w-full xl:w-auto">
             {/* href={href} */}
-            <Link href="">
+            <Link href={href}>
               View property
               <span className="sr-only"> {property.name}</span>
               <ArrowRightIcon className="size-15 shrink-0 text-gold-300" />
