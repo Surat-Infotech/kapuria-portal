@@ -80,7 +80,7 @@ const PreviewAction = ({ drawing, onPreview, className }) => (
     onClick={() => onPreview(drawing)}
     aria-label={`Preview ${drawing.title}`}
     className={cn(
-      "h-38 rounded-[10px] border-transparent bg-[#EFE7DA] px-10 text-btn font-semibold text-text-primary hover:bg-[#efe2c9]",
+      "h-38 rounded-[10px] border-transparent bg-[#EFE7DA] px-10 text-body-xs font-semibold text-text-primary hover:bg-[#efe2c9]",
       className
     )}
   >

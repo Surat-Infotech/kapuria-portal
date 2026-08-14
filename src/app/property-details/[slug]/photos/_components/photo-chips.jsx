@@ -2,16 +2,24 @@
 
 import { cn } from "@/lib/utils";
 
-// The chip rail above the drawings. Counts are the property's own — a
-// discipline with nothing issued for this villa never gets a chip, which is why
-// two properties can show a different rail.
-const DisciplineChips = ({ chips, value, onChange }) => (
+// The counted pill rail this page filters with — once above the gallery for the
+// media categories, and again inside the Indoor section for the rooms. Both
+// rails are the same control, so it takes its label as a prop rather than
+// baking one in.
+//
+// Counts are the property's own: a category or a room with nothing shot for
+// this villa never gets a chip, which is why two properties can show a
+// different rail.
+const PhotoChips = ({ chips, value, onChange, label, className }) => (
   <div
     role="tablist"
-    aria-label="Filter drawings by discipline"
-    className="-mx-16 flex gap-8 overflow-x-auto px-16 pb-2 [-ms-overflow-style:none] md:flex-wrap lg:mx-0 lg:px-0"
+    aria-label={label}
+    className={cn(
+      "-mx-16 flex gap-8 overflow-x-auto px-16 pb-2 [-ms-overflow-style:none] md:flex-wrap lg:mx-0 lg:px-0",
+      className
+    )}
   >
-    {chips.map(({ key, label, count }) => {
+    {chips.map(({ key, label: chipLabel, count }) => {
       const active = key === value;
 
       return (
@@ -28,7 +36,7 @@ const DisciplineChips = ({ chips, value, onChange }) => (
               : "border-border-default bg-surface text-text-secondary hover:bg-surface-sunken rounded-full"
           )}
         >
-          {label}
+          {chipLabel}
           <span
             className={cn(
               "font-bold",
@@ -43,4 +51,4 @@ const DisciplineChips = ({ chips, value, onChange }) => (
   </div>
 );
 
-export { DisciplineChips };
+export { PhotoChips };

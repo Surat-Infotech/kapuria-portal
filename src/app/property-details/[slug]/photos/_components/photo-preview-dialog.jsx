@@ -4,35 +4,37 @@ import { useCallback, useEffect, useId, useRef, useState } from "react";
 
 import Image from "next/image";
 
-import previewSheet from "@/assets/images/blueprints-drawing/blue-print-model.webp";
+import previewPhoto from "@/assets/images/photos-gallery/photos-model.webp";
 import { CloseIcon } from "@/components/icons";
 import { Button } from "@/components/ui/button";
-import { DRAWING_AUTHOR, DRAWING_FLOORS } from "@/data/blueprints";
+import {
+  PHOTO_ARCHITECT,
+  PHOTO_AUTHOR,
+  PHOTO_FILE,
+  photoRoomLabel,
+} from "@/data/photos";
 import { formatLongDate } from "@/lib/dates";
 import { cn } from "@/lib/utils";
 
-import { DownloadIcon } from "./blueprint-icons";
+import { DownloadIcon, GeneratedIcon, RealPhotoIcon } from "./photo-icons";
 
-// The sheet at full size with its record beside it — what "Preview" opens on
-// either card layout. One component covers both breakpoints: a bottom sheet
-// below md, a centred two-column panel above it.
+// The frame at full size with its record beside it — what a tile opens. Same
+// panel as the drawings preview in `blueprints/_components`: a bottom sheet
+// below md, a centred two-column dialog above it. Only the record differs, and
+// the stamp laid over the frame.
 
-const FLOOR_NAMES = new Map(DRAWING_FLOORS.map(({ key, name }) => [key, name]));
-
-// The facts in the order the panel reads them. Revision and status share a row
-// because a buyer asks "which revision, and is it the live one?" as one
-// question; a whole-villa sheet names itself rather than leaving Floor blank.
-const specRows = (drawing) => [
-  { label: "Floor", value: FLOOR_NAMES.get(drawing.floor) ?? "Whole villa" },
-  { label: "Scale", value: drawing.scale },
-  {
-    label: "Revision",
-    value: `${drawing.revision} · ${drawing.current ? "Current" : "Superseded"}`,
-  },
-  { label: "Format", value: drawing.format },
-  { label: "File size", value: drawing.size },
-  { label: "Updated", value: formatLongDate(drawing.updated) },
-  { label: "Prepared by", value: DRAWING_AUTHOR },
+// The facts in the order the panel reads them — Floor and Scale first, as the
+// drawings panel has them, then Room: a buyer looking at an interior asks which
+// room next, and a frame that is not of one room names the villa instead.
+const specRows = (photo) => [
+  { label: "Floor", value: photo.floor ?? PHOTO_FILE.floor },
+  { label: "Scale", value: photo.scale ?? PHOTO_FILE.scale },
+  { label: "Room", value: photoRoomLabel(photo) },
+  { label: "Architect", value: PHOTO_ARCHITECT },
+  { label: "Format", value: photo.format ?? PHOTO_FILE.format },
+  { label: "File size", value: photo.size ?? PHOTO_FILE.size },
+  { label: "Updated", value: formatLongDate(photo.captured) },
+  { label: "Prepared by", value: PHOTO_AUTHOR },
 ];
 
 // Kept in step with `duration-300` on the panel below. The dialog unmounts on a
@@ -40,7 +42,20 @@ const specRows = (drawing) => [
 // transitions also fire — filtering those out costs more than it saves.
 const SLIDE_MS = 300;
 
-const DrawingPreviewDialog = ({ drawing, onClose }) => {
+// Bottom-right on the sheet, top-right on the desktop panel — in both places
+// the corner the photo's subject is least likely to occupy.
+const OriginBadge = ({ generated }) => (
+  <span className="absolute right-16 bottom-16 z-10 inline-flex items-center gap-6 rounded-[30px] bg-[rgba(8,34,53,0.60)] px-10 py-6 text-[10px]/[14px] font-bold tracking-[0.5px] text-white uppercase backdrop-blur-[28px] md:top-16 md:bottom-auto">
+    {generated ? (
+      <GeneratedIcon className="h-12 w-14 shrink-0" />
+    ) : (
+      <RealPhotoIcon className="size-14 shrink-0" />
+    )}
+    {generated ? "Generated" : "Real photo"}
+  </span>
+);
+
+const PhotoPreviewDialog = ({ photo, onClose }) => {
   const titleId = useId();
   const panelRef = useRef(null);
   const [closing, setClosing] = useState(false);
@@ -58,8 +73,8 @@ const DrawingPreviewDialog = ({ drawing, onClose }) => {
     return () => clearTimeout(timer);
   }, [closing, onClose]);
 
-  // Escape, the body-scroll lock and focus handling follow the drawer in
-  // `components/layout/mobile-nav` — same job, so the same treatment.
+  // Escape, the body-scroll lock and focus handling follow the drawings
+  // preview — same job, so the same treatment.
   useEffect(() => {
     const onKeyDown = (event) => {
       if (event.key === "Escape") requestClose();
@@ -69,10 +84,10 @@ const DrawingPreviewDialog = ({ drawing, onClose }) => {
     const returnFocusTo = document.activeElement;
 
     // Hiding the page's overflow takes the scrollbar with it, and the viewport
-    // widens by its width: the whole card grid behind the dialog relayouts,
-    // shifts sideways, and next/image re-resolves `sizes` on every thumbnail —
-    // at open and again at close, right on top of the slide. Holding the gutter
-    // open with padding keeps the geometry identical throughout.
+    // widens by its width: the whole gallery behind the dialog relayouts and
+    // next/image re-resolves `sizes` on every tile — at open and again at
+    // close, right on top of the slide. Holding the gutter open with padding
+    // keeps the geometry identical throughout.
     const gutter = window.innerWidth - document.documentElement.clientWidth;
 
     document.body.style.overflow = "hidden";
@@ -85,7 +100,7 @@ const DrawingPreviewDialog = ({ drawing, onClose }) => {
       document.body.style.overflow = overflow;
       document.body.style.paddingRight = paddingRight;
       document.removeEventListener("keydown", onKeyDown);
-      // The card that opened this keeps its place in the tab order.
+      // The tile that opened this keeps its place in the tab order.
       returnFocusTo?.focus?.({ preventScroll: true });
     };
   }, [requestClose]);
@@ -114,30 +129,32 @@ const DrawingPreviewDialog = ({ drawing, onClose }) => {
           closing ? "translate-y-full" : "animate-sheet-rise"
         )}
       >
-        
-        <div className="flex relative shrink-0 flex-col border-b border-gold-300/70 bg-white w-full md:max-w-[56%] lg:max-w-592 md:shrink md:justify-center md:border-r md:border-b-0 md:border-border-subtle">
+        <div className="relative flex w-full shrink-0 flex-col border-b border-gold-300/70 bg-white md:max-w-[56%] lg:max-w-592 md:shrink md:justify-center md:border-r md:border-b-0 md:border-border-subtle">
           <span
             aria-hidden
-            className="mx-auto absolute top-8 left-1/2 -translate-1/2 h-4 w-40 shrink-0 rounded-full bg-[#082235] md:hidden"
+            className="absolute top-8 left-1/2 z-10 mx-auto h-4 w-40 shrink-0 -translate-1/2 rounded-full bg-[#082235] md:hidden"
           />
 
-          {/* Every preview opens on the same full-size sheet for now: the
-              thumbnails on the cards are crops, and none of them reads at this
-              scale. Swap back to the drawing's own scan — `src={drawing.image}`
-              — once the documents service issues one per sheet. */}
+          {/* Every preview opens on the same frame for now: the gallery's own
+              assets are 259px placeholders and none of them reads at this
+              scale. Swap back to the photo itself — `src={photo.image}` — once
+              the shoot is delivered at full resolution. */}
           <Image
-            src={previewSheet}
-            alt={`${drawing.title} — ${drawing.revision}`}
+            src={previewPhoto}
+            alt={`${photo.title} — ${photo.caption}`}
             priority
             sizes="(max-width: 767px) 100vw, (max-width: 1008px) 56vw, 538px"
-            className="h-auto max-h-300 w-full object-contain md:max-h-[70vh]"
+            className="h-300 w-full object-cover md:h-full"
           />
+
+          <OriginBadge generated={photo.generated} />
         </div>
+
         <div className="flex min-h-0 min-w-0 flex-1 flex-col overflow-y-auto overscroll-contain">
           <div className="flex flex-col gap-8 px-20 pt-20 pb-16 md:px-28 md:pt-24">
-            <div className="flex justify-between items-center w-full">
+            <div className="flex w-full items-center justify-between">
               <p className="text-[10px]/[14px] font-bold tracking-[2px] text-text-accent uppercase">
-                Blueprint
+                {photo.generated ? "Visualisation" : "Photo"}
               </p>
               <button
                 type="button"
@@ -152,12 +169,12 @@ const DrawingPreviewDialog = ({ drawing, onClose }) => {
               id={titleId}
               className="text-h4 font-semibold text-text-primary md:text-h3"
             >
-              {drawing.title}
+              {photo.title}
             </h2>
           </div>
 
           <dl className="flex flex-col px-20 pt-0 md:px-28">
-            {specRows(drawing).map(({ label, value }) => (
+            {specRows(photo).map(({ label, value }) => (
               <div
                 key={label}
                 className="flex items-center justify-between gap-16 border-b border-border-subtle py-10 first:border-t"
@@ -185,7 +202,7 @@ const DrawingPreviewDialog = ({ drawing, onClose }) => {
               asChild
               className="h-42 flex-[1.4] px-20 text-btn font-semibold md:flex-1"
             >
-              <a href={drawing.file} download>
+              <a href={photo.image.src} download={`${photo.id}.webp`}>
                 <DownloadIcon className="size-16 shrink-0 text-gold-300" />
                 Download
               </a>
@@ -197,4 +214,4 @@ const DrawingPreviewDialog = ({ drawing, onClose }) => {
   );
 };
 
-export { DrawingPreviewDialog };
+export { PhotoPreviewDialog };
