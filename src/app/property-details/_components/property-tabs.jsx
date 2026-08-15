@@ -10,13 +10,21 @@ import {
   SummaryIcon,
 } from "./property-icons";
 
-// `segment` is appended to the property's own URL — an empty one is the
-// Summary page itself, which is this route.
 const PROPERTY_SECTIONS = [
-  { segment: "", label: "Summary", Icon: SummaryIcon },
-  { segment: "blueprints", label: "Blueprints", Icon: BlueprintsIcon },
-  { segment: "3d-drawings", label: "3D Drawings", Icon: DrawingsIcon },
-  { segment: "photos", label: "Photos", Icon: PhotosIcon },
+  { segment: "", label: "Summary", Icon: SummaryIcon, linked: true },
+  {
+    segment: "blueprints",
+    label: "Blueprints",
+    Icon: BlueprintsIcon,
+    linked: false,
+  },
+  {
+    segment: "3d-drawings",
+    label: "3D Drawings",
+    Icon: DrawingsIcon,
+    linked: false,
+  },
+  { segment: "photos", label: "Photos", Icon: PhotosIcon, linked: false },
 ];
 
 const PropertyTabs = ({ slug, activeSegment = "" }) => (
@@ -24,13 +32,18 @@ const PropertyTabs = ({ slug, activeSegment = "" }) => (
     aria-label="Property sections"
     className="flex gap-8 overflow-x-auto border-b border-border-subtle [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
   >
-    {PROPERTY_SECTIONS.map(({ segment, label, Icon }) => {
+    {PROPERTY_SECTIONS.map(({ segment, label, Icon, linked }) => {
       const active = segment === activeSegment;
 
+      // A section that is not linked keeps the row's look but is inert: a span
+      // rather than an anchor, so there is nothing to click, tab to, or open in
+      // a new tab.
+      const Tab = linked ? Link : "span";
+
       return (
-        <Link
+        <Tab
           key={label}
-          href={propertyHref(slug, segment)}
+          {...(linked ? { href: propertyHref(slug, segment) } : {})}
           aria-current={active ? "page" : undefined}
           className={cn(
             // -mb-px lets the 2px active rule sit on the container hairline
@@ -48,7 +61,7 @@ const PropertyTabs = ({ slug, activeSegment = "" }) => (
             )}
           />
           {label}
-        </Link>
+        </Tab>
       );
     })}
   </nav>
