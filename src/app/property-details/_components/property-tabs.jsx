@@ -10,10 +10,6 @@ import {
   SummaryIcon,
 } from "./property-icons";
 
-// `segment` is appended to the property's own URL — an empty one is the
-// Summary page itself, which is this route. `linked: false` draws the row but
-// holds the buyer on the page they are on; flip it back to true to hand that
-// section its navigation again.
 const PROPERTY_SECTIONS = [
   { segment: "", label: "Summary", Icon: SummaryIcon, linked: true },
   {
