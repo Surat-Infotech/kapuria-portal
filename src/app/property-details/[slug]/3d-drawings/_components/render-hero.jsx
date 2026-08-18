@@ -56,7 +56,7 @@ const RenderHero = ({ render, onOpen }) => (
       className="absolute top-16 right-16 z-10 inline-flex cursor-pointer items-center gap-8 rounded-full px-20 py-12 text-body-xs font-semibold text-text-primary transition-colors duration-200 ease-out outline-none bg-white md:text-body lg:hidden"
     >
       <EyeIcon className="size-16 shrink-0 text-[#082235]" />
-      Open render
+      Open Render
     </button>
 
     <div className="flex items-end justify-between gap-16 w-full p-16 sm:p-20 lg:p-24 xl:p-34">
@@ -71,10 +71,10 @@ const RenderHero = ({ render, onOpen }) => (
       <button
         type="button"
         onClick={() => onOpen(render)}
-        className="hidden cursor-pointer whitespace-nowrap items-center gap-8 rounded-full px-22 py-12 text-body-xs font-semibold text-text-primary shadow-[0_8px_24px_rgba(6,26,42,0.24)] backdrop-blur-[10px] transition-colors duration-200 ease-out outline-none bg-white lg:inline-flex"
+        className="hidden cursor-pointer whitespace-nowrap items-center gap-8 rounded-full px-22 py-12 text-body-xs font-semibold text-[#082235] shadow-[0_8px_24px_rgba(6,26,42,0.24)] backdrop-blur-[10px] transition-colors duration-200 ease-out outline-none bg-white lg:inline-flex"
       >
         <EyeIcon className="size-15 shrink-0 text-[#082235]" />
-        Open render
+        Open Render
       </button>
     </div>
   </section>
