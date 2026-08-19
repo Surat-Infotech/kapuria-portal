@@ -30,7 +30,9 @@ const NavItem = ({ item, onNavigate }) => {
           : "text-sidebar-item hover:bg-white/6 hover:text-white"
       )}
     >
-      <Icon className="size-24 shrink-0" />
+      <Icon
+        className={cn("size-24 shrink-0", isActive && "text-[#E7BE7B]")}
+      />
       <span className="whitespace-nowrap">{item.label}</span>
     </Link>
   );

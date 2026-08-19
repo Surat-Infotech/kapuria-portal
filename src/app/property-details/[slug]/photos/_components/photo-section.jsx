@@ -9,7 +9,7 @@ import { PhotoCard } from "./photo-card";
 // on screen.
 
 const PhotoGrid = ({ photos, onOpen }) => (
-  <div className="grid grid-cols-2 gap-16 md:grid-cols-3 md:gap-24 xl:grid-cols-4">
+  <div className="grid grid-cols-2 gap-16 md:grid-cols-3 lg:grid-cols-2 md:gap-24 xl:grid-cols-4">
     {photos.map((photo) => (
       <PhotoCard key={photo.id} photo={photo} onOpen={onOpen} />
     ))}

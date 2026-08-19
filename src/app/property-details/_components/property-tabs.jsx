@@ -16,7 +16,7 @@ const PROPERTY_SECTIONS = [
     segment: "blueprints",
     label: "Blueprints",
     Icon: BlueprintsIcon,
-    linked: false,
+    linked: true,
   },
   {
     segment: "3d-drawings",

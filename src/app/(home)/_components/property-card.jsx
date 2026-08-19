@@ -27,7 +27,7 @@ const documentLinks = [
     label: "Blueprints",
     icon: BlueprintIcon,
     segment: "blueprints",
-    linked: false,
+    linked: true,
   },
   {
     label: "3D Drawings",
