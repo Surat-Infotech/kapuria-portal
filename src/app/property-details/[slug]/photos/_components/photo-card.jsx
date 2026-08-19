@@ -28,7 +28,7 @@ const PhotoCard = ({ photo, onOpen }) => (
     type="button"
     onClick={() => onOpen(photo)}
     aria-label={`View ${photo.title} — ${photo.caption}`}
-    className="group relative isolate flex aspect-163/150 w-full cursor-pointer items-end overflow-hidden rounded-2xl bg-surface-sunken text-left outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-background lg:aspect-259/185"
+    className="group relative isolate flex aspect-163/150 w-full cursor-pointer items-end overflow-hidden rounded-2xl bg-[#C2AD90] text-left outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-background lg:aspect-259/185"
   >
     <Image
       src={photo.image}
@@ -43,7 +43,7 @@ const PhotoCard = ({ photo, onOpen }) => (
         only ever needs the ground under itself darkened. */}
     <div
       aria-hidden
-      className="absolute inset-0 bg-[linear-gradient(to_top,rgba(6,26,42,0.88)_0%,rgba(6,26,42,0.42)_20%,rgba(6,26,42,0)_52%)]"
+      className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,34,53,0.00)_29.73%,rgba(0,27,46,0.76)_100%)]"
     />
 
     {photo.generated ? <GeneratedBadge /> : null}
