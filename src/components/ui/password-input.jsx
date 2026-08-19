@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { EyeIcon } from "@/components/icons";
+import { EyeIcon, EyeOffIcon } from "@/components/icons";
 
 /** 42px password field with the show/hide eye toggle from Figma. */
 const PasswordInput = ({ id, defaultValue, ...props }) => {
@@ -21,9 +21,14 @@ const PasswordInput = ({ id, defaultValue, ...props }) => {
         type="button"
         onClick={() => setVisible((current) => !current)}
         aria-label={visible ? "Hide password" : "Show password"}
-        className="shrink-0 text-text-secondary transition-colors hover:text-text-primary"
+        className="shrink-0 cursor-pointer text-text-secondary transition-colors hover:text-text-primary"
       >
-        <EyeIcon className="size-17" />
+        {/* Struck-through eye once the characters are on screen. */}
+        {visible ? (
+          <EyeOffIcon className="size-17" />
+        ) : (
+          <EyeIcon className="size-17" />
+        )}
       </button>
     </div>
   );
