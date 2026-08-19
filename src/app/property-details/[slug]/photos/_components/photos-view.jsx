@@ -20,6 +20,12 @@ import { PhotoSection } from "./photo-section";
 
 const ALL = "all";
 
+// Indoor's "All Media" is a preview of the whole interior set, not the set
+// itself: it shows one room's worth of frames so the band stays the same length
+// as every room tab beside it, instead of stacking every room into one long
+// scroll.
+const INDOOR_PREVIEW_COUNT = 6;
+
 // The room rail opens on a room rather than on everything — Bedroom 1 for a
 // property shot in the usual order. Read off the rail's own order rather than
 // hardcoded, so a house whose interior shoot skipped Bedroom 1 opens on its
@@ -69,7 +75,13 @@ const PhotosView = ({ property, photos }) => {
     const indoorTotal = [...counts.values()].reduce((sum, n) => sum + n, 0);
 
     return [
-      { key: ALL, label: "All Media", count: indoorTotal },
+      // The badge counts what the chip actually opens — the preview — not the
+      // whole interior set, so it reads the same length as the room chips.
+      {
+        key: ALL,
+        label: "All Media",
+        count: Math.min(indoorTotal, INDOOR_PREVIEW_COUNT),
+      },
       ...INDOOR_ROOMS.filter(({ key }) => counts.has(key)).map(
         ({ key, label }) => ({ key, label, count: counts.get(key) })
       ),
@@ -90,8 +102,10 @@ const PhotosView = ({ property, photos }) => {
             label,
             total: inCategory.length,
             items:
-              key === "indoor" && room !== ALL
-                ? inCategory.filter((photo) => photo.room === room)
+              key === "indoor"
+                ? room === ALL
+                  ? inCategory.slice(0, INDOOR_PREVIEW_COUNT)
+                  : inCategory.filter((photo) => photo.room === room)
                 : inCategory,
           };
         })
