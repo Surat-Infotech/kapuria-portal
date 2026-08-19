@@ -156,6 +156,8 @@ const RendersView = ({ property, renders }) => {
         </div>
       ) : (
         <>
+          <div className="h-px my-8 bg-border-subtle lg:hidden" />
+          
           <RenderHero render={hero} onOpen={setPreview} />
 
           <RenderChips chips={chips} value={category} onChange={setCategory} />
