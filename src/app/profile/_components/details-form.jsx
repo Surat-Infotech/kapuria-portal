@@ -1,3 +1,4 @@
+import { DialCodeSelect } from "@/components/common/dial-code-select";
 import { SaveCheckIcon, VerifiedIcon } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { Field, Input, Label } from "@/components/ui/input";
@@ -68,9 +69,15 @@ const DetailsForm = ({ profile, onCancel }) => (
       <Field>
         <Label htmlFor="phone">Phone number</Label>
         <div className="flex gap-10">
-          <div className="flex w-104 shrink-0 items-center justify-center rounded-[11px] border border-border-default bg-surface px-16 py-10 text-[13px] font-semibold text-text-primary">
-            🇮🇳 {profile.dialCode}
-          </div>
+          {/* Same picker the contact form uses — only the box keeps the
+              profile card's tighter type. */}
+          <DialCodeSelect
+            id="dialCode"
+            defaultValue={profile.dialCode}
+            className="w-104 shrink-0"
+            triggerClassName="px-12 py-10 text-[13px] font-semibold"
+            showChevron
+          />
           <Input id="phone" type="tel" defaultValue={profile.phone} />
         </div>
       </Field>
