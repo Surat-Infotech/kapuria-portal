@@ -4,7 +4,6 @@ import { useCallback, useEffect, useId, useRef, useState } from "react";
 
 import Image from "next/image";
 
-import previewPhoto from "@/assets/images/photos-gallery/photos-model.webp";
 import { CloseIcon } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import {
@@ -140,7 +139,7 @@ const PhotoPreviewDialog = ({ photo, onClose }) => {
               scale. Swap back to the photo itself — `src={photo.image}` — once
               the shoot is delivered at full resolution. */}
           <Image
-            src={previewPhoto}
+            src={photo.image}
             alt={`${photo.title} — ${photo.caption}`}
             priority
             sizes="(max-width: 767px) 100vw, (max-width: 1008px) 56vw, 538px"

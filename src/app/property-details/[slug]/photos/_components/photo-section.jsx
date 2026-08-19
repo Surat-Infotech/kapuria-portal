@@ -8,6 +8,7 @@ import { PhotoCard } from "./photo-card";
 // room's six. The heading states what the property has; the grid states what is
 // on screen.
 
+
 const PhotoGrid = ({ photos, onOpen }) => (
   <div className="grid grid-cols-2 gap-16 md:grid-cols-3 lg:grid-cols-2 md:gap-24 xl:grid-cols-4">
     {photos.map((photo) => (

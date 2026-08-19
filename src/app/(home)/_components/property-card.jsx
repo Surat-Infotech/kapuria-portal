@@ -35,7 +35,7 @@ const documentLinks = [
     segment: "3d-drawings",
     linked: false,
   },
-  { label: "Photos", icon: PhotosIcon, segment: "photos", linked: false },
+  { label: "Photos", icon: PhotosIcon, segment: "photos", linked: true },
   {
     label: "Legal Documents",
     icon: DocumentIcon,
