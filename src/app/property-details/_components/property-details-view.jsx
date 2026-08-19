@@ -10,9 +10,11 @@ import { PropertyTabs } from "./property-tabs";
 import { SummaryPanel } from "./summary-panel";
 
 const ContactButton = ({ width }) => (
-  <Button width={width} className="font-medium py-12 px-20">
-    <PropertyContactIcon className="size-16 shrink-0 text-gold-300" />
-    Contact project team
+  <Button asChild width={width} className="font-medium py-12 px-20">
+    <Link href="/contact">
+      <PropertyContactIcon className="size-16 shrink-0 text-gold-300" />
+      Contact project team
+    </Link>
   </Button>
 );
 

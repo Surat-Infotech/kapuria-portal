@@ -16,7 +16,7 @@ const RenderCard = ({ render, onOpen }) => (
     type="button"
     onClick={() => onOpen(render)}
     aria-label={`Open ${render.title} — ${render.caption}`}
-    className="group relative isolate flex aspect-290/217 w-full cursor-pointer items-end overflow-hidden rounded-2xl bg-surface-sunken text-left outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-background lg:aspect-352/235"
+    className="group relative isolate flex aspect-290/217 w-full cursor-pointer items-end overflow-hidden rounded-2xl bg-[#C2AD90] text-left outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-background lg:aspect-352/235"
   >
     <Image
       src={render.image}
@@ -31,7 +31,7 @@ const RenderCard = ({ render, onOpen }) => (
         ever needs the ground under itself darkened. */}
     <div
       aria-hidden
-      className="absolute inset-0 bg-[linear-gradient(to_top,rgba(6,26,42,0.88)_0%,rgba(6,26,42,0.42)_22%,rgba(6,26,42,0)_54%)]"
+      className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,34,53,0.00)_51.16%,rgba(0,27,46,0.76)_100%)]"
     />
 
     <OriginBadge
@@ -49,7 +49,7 @@ const RenderCard = ({ render, onOpen }) => (
 );
 
 const RenderGrid = ({ renders, onOpen }) => (
-  <div className="grid grid-cols-1 gap-16 md:grid-cols-2 lg:grid-cols-3 lg:gap-24">
+  <div className="grid grid-cols-1 gap-16 sm:grid-cols-2 xl:grid-cols-3 lg:gap-24">
     {renders.map((render) => (
       <RenderCard key={render.id} render={render} onOpen={onOpen} />
     ))}
