@@ -24,7 +24,7 @@ const PROPERTY_SECTIONS = [
     Icon: DrawingsIcon,
     linked: false,
   },
-  { segment: "photos", label: "Photos", Icon: PhotosIcon, linked: false },
+  { segment: "photos", label: "Photos", Icon: PhotosIcon, linked: true },
 ];
 
 const PropertyTabs = ({ slug, activeSegment = "" }) => (
