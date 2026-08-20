@@ -119,7 +119,7 @@ const RendersView = ({ property, renders }) => {
         <PageHeader
           eyebrow="Visualisation"
           accent="3D"
-          title="Drawings & Renders"
+          title="Drawings & Visulization"
           description="Photoreal renders and massing studies of your villa — inside and out, before a single brick is laid."
         />
 

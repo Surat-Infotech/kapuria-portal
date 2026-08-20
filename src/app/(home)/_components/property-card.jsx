@@ -12,36 +12,13 @@ import {
 import { Button } from "@/components/ui/button";
 import { propertyHref } from "@/lib/property-links";
 
-// Every property exposes the same four document shortcuts, so the row is
-// defined once here rather than repeated in the page data. `segment` is
-// appended to the property's own URL, which is how each card ends up pointing
-// at its own drawings rather than a shared page.
-//
-// `linked` is the same key the property tabs carry — see
-// `property-details/_components/property-tabs`. A section whose page is not
-// built yet keeps its place in the row, so the card states the full set a
-// property has, but it does not navigate: there is nothing to click, tab to or
-// open in a new tab, and no shortcut can land on a 404.
+// `segment` routes into the property's own detail page; `href` is for chips
+// that point somewhere outside the property, and wins when both are present.
 const documentLinks = [
-  {
-    label: "Blueprints",
-    icon: BlueprintIcon,
-    segment: "blueprints",
-    linked: true,
-  },
-  {
-    label: "3D Drawings",
-    icon: DrawingsIcon,
-    segment: "3d-drawings",
-    linked: false,
-  },
-  { label: "Photos", icon: PhotosIcon, segment: "photos", linked: true },
-  {
-    label: "Legal Documents",
-    icon: DocumentIcon,
-    segment: "legal-documents",
-    linked: false,
-  },
+  { label: "Blueprints", icon: BlueprintIcon, segment: "blueprints" },
+  { label: "3D Drawings", icon: DrawingsIcon, segment: "3d-drawings" },
+  { label: "Photos", icon: PhotosIcon, segment: "photos" },
+  { label: "Legal Documents", icon: DocumentIcon, href: "/faqs" },
 ];
 
 /**
@@ -107,36 +84,20 @@ const PropertyCard = ({ property, priority = false }) => {
 
         <div className="flex flex-col gap-16 xl:flex-row lg:items-center lg:gap-8 lg:justify-between">
           <div className="grid grid-cols-2 gap-8 lg:flex lg:flex-wrap">
-            {documentLinks.map(({ label, icon: Icon, segment, linked }) => {
-              const face = (
-                <>
+            {documentLinks.map(({ label, icon: Icon, segment, href: to }) => (
+              <Button
+                key={label}
+                asChild
+                variant="secondary"
+                size="sm"
+                className="gap-4"
+              >
+                <Link href={to ?? propertyHref(property.slug, segment)}>
                   <Icon className="size-15 shrink-0 text-text-accent" />
                   {label}
-                </>
-              );
-
-              // A span rather than an anchor for the sections still to come.
-              // The pill is left exactly as it looks when linked — same fill,
-              // same hover, same pointer — so the row reads as one set; it
-              // simply has nowhere to go yet.
-              return (
-                <Button
-                  key={label}
-                  asChild
-                  variant="secondary"
-                  size="sm"
-                  className="gap-4"
-                >
-                  {linked ? (
-                    <Link href={propertyHref(property.slug, segment)}>
-                      {face}
-                    </Link>
-                  ) : (
-                    <span>{face}</span>
-                  )}
-                </Button>
-              );
-            })}
+                </Link>
+              </Button>
+            ))}
           </div>
 
           <Button asChild className="w-full xl:w-auto">
