@@ -1,12 +1,87 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import Link from "next/link";
 
 import { LogoMark } from "@/components/common/logo";
-import { CloseIcon, MenuIcon } from "@/components/icons";
+import {
+  CloseIcon,
+  LogoutIcon,
+  MenuIcon,
+  ProfileIcon,
+} from "@/components/icons";
 import { SidebarNav } from "@/components/layout/sidebar-nav";
+
+/** Avatar chip in the mobile header, with the same Profile / Log out menu
+ *  the desktop top bar shows. */
+const UserMenu = ({ user }) => {
+  const [open, setOpen] = useState(false);
+  const containerRef = useRef(null);
+
+  // Pointer-down rather than click: a click that lands on another control
+  // should close the menu and act on that control in the same gesture.
+  useEffect(() => {
+    if (!open) return undefined;
+
+    const onPointerDown = (event) => {
+      if (!containerRef.current?.contains(event.target)) setOpen(false);
+    };
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+
+    document.addEventListener("pointerdown", onPointerDown);
+    document.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.removeEventListener("pointerdown", onPointerDown);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [open]);
+
+  return (
+    <div ref={containerRef} className="relative">
+      <button
+        type="button"
+        aria-haspopup="menu"
+        aria-expanded={open}
+        aria-label="Account menu"
+        onClick={() => setOpen((wasOpen) => !wasOpen)}
+        className="flex size-36 cursor-pointer items-center justify-center rounded-full text-body-xs font-bold text-[#5a3d12]"
+        style={{ backgroundImage: "var(--gradient-avatar)" }}
+      >
+        {user.initials}
+      </button>
+
+      {open ? (
+        <div
+          role="menu"
+          className="absolute top-full right-0 z-20 mt-6 w-180 overflow-hidden rounded-xl border border-border-subtle bg-surface py-4 shadow-[0_8px_24px_rgba(11,34,51,0.01)]"
+        >
+          <Link
+            href="/profile"
+            role="menuitem"
+            onClick={() => setOpen(false)}
+            className="flex w-full items-center gap-10 px-14 py-10 text-body-xs font-medium text-text-primary transition-colors duration-200 ease-out outline-none hover:bg-surface-sunken hover:text-text-primary focus-visible:bg-surface-sunken lg:text-body"
+          >
+            <ProfileIcon className="size-16 shrink-0" />
+            Profile
+          </Link>
+          <Link
+            href="/sign-in"
+            role="menuitem"
+            onClick={() => setOpen(false)}
+            className="flex w-full items-center gap-10 px-14 py-10 text-body-xs font-medium text-text-primary transition-colors duration-200 ease-out outline-none hover:bg-surface-sunken hover:text-text-primary focus-visible:bg-surface-sunken lg:text-body"
+          >
+            <LogoutIcon stroke-width="0.7" className="size-16 shrink-0" />
+            Log out
+          </Link>
+        </div>
+      ) : null}
+    </div>
+  );
+};
 
 /**
  * Mobile top bar (62px) plus the slide-in drawer that reuses SidebarNav.
@@ -47,12 +122,7 @@ const MobileNav = ({ user }) => {
         </Link>
 
         <div className="flex items-center gap-10">
-          <div
-            className="flex size-36 items-center justify-center rounded-full text-body-xs font-bold text-[#5a3d12]"
-            style={{ backgroundImage: "var(--gradient-avatar)" }}
-          >
-            {user.initials}
-          </div>
+          <UserMenu user={user} />
           <button
             type="button"
             onClick={() => setOpen(true)}

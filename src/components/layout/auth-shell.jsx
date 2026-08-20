@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { LivingSpacesGlyph } from "@/components/auth/auth-icons";
-import { SidebarLogo } from "@/components/common/logo";
+import { AuthLogo } from "@/components/common/logo";
 
 /**
  * Layout for the signed-out routes. Deliberately has no sidebar, top bar or
@@ -27,7 +27,7 @@ const AuthShell = ({ children }) => (
 
     <aside className="relative py-40 bg-navy-900 flex lg:h-full lg:w-1/2 items-center justify-center lg:py-0 lg:px-64">
       <Link href="/">
-        <SidebarLogo className="h-auto w-147 lg:w-292" />
+        <AuthLogo className="h-auto w-147 lg:w-292" />
       </Link>
 
       <div className="absolute inset-x-0 bottom-60 hidden lg:flex flex-col items-center gap-8">
