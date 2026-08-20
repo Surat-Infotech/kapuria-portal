@@ -12,16 +12,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { propertyHref } from "@/lib/property-links";
 
-// Every property exposes the same four document shortcuts, so the row is
-// defined once here rather than repeated in the page data. `segment` is
-// appended to the property's own URL, which is how each card ends up pointing
-// at its own drawings rather than a shared page.
-//
-// `linked` is the same key the property tabs carry — see
-// `property-details/_components/property-tabs`. A section whose page is not
-// built yet keeps its place in the row, so the card states the full set a
-// property has, but it does not navigate: there is nothing to click, tab to or
-// open in a new tab, and no shortcut can land on a 404.
 const documentLinks = [
   {
     label: "Blueprints",
@@ -33,7 +23,7 @@ const documentLinks = [
     label: "3D Drawings",
     icon: DrawingsIcon,
     segment: "3d-drawings",
-    linked: false,
+    linked: true,
   },
   { label: "Photos", icon: PhotosIcon, segment: "photos", linked: true },
   {
