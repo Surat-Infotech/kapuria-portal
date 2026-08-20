@@ -93,13 +93,14 @@ const SidebarNav = ({ user, onNavigate, className }) => (
 
     <div className="flex shrink-0 flex-col gap-4 border-t border-sidebar-border p-16">
       <UserCard user={user} />
-      <button
-        type="button"
+      <Link
+        href="/sign-in"
+        onClick={onNavigate}
         className="flex w-full items-center justify-center gap-9 rounded-[11px] border border-border-inverse px-16 py-10 text-link font-semibold text-white/82 transition-colors hover:bg-white/8"
       >
         <LogoutIcon className="size-16 shrink-0" />
         Log out
-      </button>
+      </Link>
     </div>
   </div>
 );
