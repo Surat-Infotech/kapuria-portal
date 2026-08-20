@@ -11,20 +11,10 @@ import {
 } from "./property-icons";
 
 const PROPERTY_SECTIONS = [
-  { segment: "", label: "Summary", Icon: SummaryIcon, linked: true },
-  {
-    segment: "blueprints",
-    label: "Blueprints",
-    Icon: BlueprintsIcon,
-    linked: true,
-  },
-  {
-    segment: "3d-drawings",
-    label: "3D Drawings",
-    Icon: DrawingsIcon,
-    linked: false,
-  },
-  { segment: "photos", label: "Photos", Icon: PhotosIcon, linked: true },
+  { segment: "", label: "Summary", Icon: SummaryIcon },
+  { segment: "blueprints", label: "Blueprints", Icon: BlueprintsIcon },
+  { segment: "3d-drawings", label: "3D Drawings", Icon: DrawingsIcon },
+  { segment: "photos", label: "Photos", Icon: PhotosIcon },
 ];
 
 const PropertyTabs = ({ slug, activeSegment = "" }) => (
@@ -32,18 +22,13 @@ const PropertyTabs = ({ slug, activeSegment = "" }) => (
     aria-label="Property sections"
     className="flex gap-8 overflow-x-auto border-b border-border-subtle [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
   >
-    {PROPERTY_SECTIONS.map(({ segment, label, Icon, linked }) => {
+    {PROPERTY_SECTIONS.map(({ segment, label, Icon }) => {
       const active = segment === activeSegment;
 
-      // A section that is not linked keeps the row's look but is inert: a span
-      // rather than an anchor, so there is nothing to click, tab to, or open in
-      // a new tab.
-      const Tab = linked ? Link : "span";
-
       return (
-        <Tab
+        <Link
           key={label}
-          {...(linked ? { href: propertyHref(slug, segment) } : {})}
+          href={propertyHref(slug, segment)}
           aria-current={active ? "page" : undefined}
           className={cn(
             // -mb-px lets the 2px active rule sit on the container hairline
@@ -61,7 +46,7 @@ const PropertyTabs = ({ slug, activeSegment = "" }) => (
             )}
           />
           {label}
-        </Tab>
+        </Link>
       );
     })}
   </nav>
