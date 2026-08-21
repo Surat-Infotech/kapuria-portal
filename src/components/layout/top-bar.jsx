@@ -82,7 +82,7 @@ const UserMenu = ({ user }) => {
             onClick={() => setOpen(false)}
             className="flex w-full items-center gap-10 px-14 py-10 text-body-xs font-medium text-text-primary transition-colors duration-200 ease-out outline-none hover:bg-surface-sunken hover:text-text-primary focus-visible:bg-surface-sunken lg:text-body"
           >
-            <LogoutIcon stroke-width="0.7" className="size-16 shrink-0" />
+            <LogoutIcon strokeWidth="0.7" className="size-16 shrink-0" />
             Log out
           </Link>
         </div>
