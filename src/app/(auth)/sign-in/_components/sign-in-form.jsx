@@ -81,9 +81,12 @@ const SignInForm = () => {
         </Link>
       </div>
 
-      <Button type="submit" size="lg" width="full" className="mt-8">
-        Sign in
-        <ArrowRightIcon className="size-18 text-gold-300" />
+      {/* No auth wiring yet — the button just lands on the portal home. */}
+      <Button asChild size="lg" width="full" className="mt-8">
+        <Link href="/">
+          Sign in
+          <ArrowRightIcon className="size-18 text-gold-300" />
+        </Link>
       </Button>
     </form>
   );
